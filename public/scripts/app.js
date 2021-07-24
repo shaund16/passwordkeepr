@@ -1,10 +1,9 @@
+//------------------------------------------------------------------------------
+// Main client side script
+//------------------------------------------------------------------------------
+
 $(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users",
-  }).done((users) => {
-    for (user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
+  $.get('/api/passwords').then((json) => {
+    appendPasswords(json.passwords);
   });
 });

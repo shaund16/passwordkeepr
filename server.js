@@ -1,61 +1,75 @@
-// load .env data into process.env
-require("dotenv").config();
+//------------------------------------------------------------------------------
+// server.js
+//------------------------------------------------------------------------------
 
-// Web server config
+//------------------------------------------------------------------------------
+// Load .env data into process.env
+
+require('dotenv').config();
+
+//------------------------------------------------------------------------------
+// Constants
+
 const PORT = process.env.PORT || 8080;
-const ENV = process.env.ENV || "development";
-const express = require("express");
-const bodyParser = require("body-parser");
-const sass = require("node-sass-middleware");
+const ENV = process.env.ENV || 'development';
+
+//------------------------------------------------------------------------------
+// Set up and connect database
+
+const db = require('./db');
+
+//------------------------------------------------------------------------------
+// Create and initialize server
+
+const express = require('express');
 const app = express();
-const morgan = require("morgan");
+app.set('view engine', 'ejs');
 
-// PG database client/connection setup
-const { Pool } = require("pg");
-const dbParams = require("./lib/db.js");
-const db = new Pool(dbParams);
-db.connect();
+//------------------------------------------------------------------------------
+// Use middleware
 
-// Load the logger first so all (static) HTTP requests are logged to STDOUT
-// 'dev' = Concise output colored by response status for development use.
-// The :status token will be colored:
-//   - red for server error codes,
-//   - yellow for client error codes,
-//   - cyan for redirection codes, and
-//   - uncolored for all other codes.
-app.use(morgan("dev"));
+const morgan = require('morgan');
+app.use(morgan('dev'));
 
-app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(
-  "/styles",
-  sass({
-    src: __dirname + "/styles",
-    dest: __dirname + "/public/styles",
-    debug: true,
-    outputStyle: "expanded",
-  })
+app.use(express.urlencoded({ extended: false }));
+// Deprecated:
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({ extended: true }));
+
+const sass = require('node-sass-middleware');
+const sassOptions = {
+  src: __dirname + '/styles',
+  dest: __dirname + '/public/styles',
+  debug: true,
+  outputStyle: 'expanded',
+};
+app.use('/styles', sass(sassOptions));
+
+app.use(express.static('public')); // <== Home page
+
+//------------------------------------------------------------------------------
+// Create a separate router for each ressource
+
+const usersRoutes = require('./routes/users');
+const passwordRoutes = require('./routes/passwords');
+
+//------------------------------------------------------------------------------
+// Mount all ressource routers
+
+app.use('/api/users', usersRoutes(db));
+app.use('/api/passwords', passwordRoutes(db));
+
+//------------------------------------------------------------------------------
+// Render home page  <== Not used for SPA
+
+// app.get('/', (req, res) => res.render('index'));
+
+//------------------------------------------------------------------------------
+// Start listening
+
+app.listen(PORT, () =>
+  console.log(`
+-------------------------------------
+PasswordKeepR listening on port ${PORT}
+-------------------------------------`)
 );
-app.use(express.static("public"));
-
-// Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
-
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
-// Note: mount other resources here, using the same pattern above
-
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
-});
