@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS orgs_users CASCADE;
+
+CREATE TABLE orgs_users (
+  org_id INTEGER REFERENCES orgs(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
