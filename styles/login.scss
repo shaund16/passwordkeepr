@@ -1,0 +1,49 @@
+body {
+  overflow: hidden;
+  max-width: 1005;
+}
+
+#section {
+  display: flex;
+  flex-direction: column;
+  margin: 15em 13em 0 13em;
+  padding: 2em 4em 2em 4em;
+  border: 1px solid red;
+  max-width: 100%;
+}
+
+#form__section {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.form__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.form__email,
+.form__password {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.form__button {
+  margin-top: 1em;
+  width: 20%;
+  align-self: center;
+}
+
+.register__link {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+#footer__section {
+  display: flex;
+  justify-content: center;
+}
