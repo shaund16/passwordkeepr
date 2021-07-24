@@ -8,5 +8,6 @@ CREATE TABLE passwords (
   site_url VARCHAR(255) NOT NULL,
   site_login VARCHAR(255) NOT NULL,
   site_pwd VARCHAR(255) NOT NULL,
+  category VARCHAR(255) NOT NULL,
   date_created VARCHAR(255) NOT NULL
 );
