@@ -1,1 +1,76 @@
+body {
+  overflow: hidden;
+  // background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEUsLkNy/5tYAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=");
+}
 
+// Header section
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #595260;
+  position: absolute;
+  top: 0;
+  padding: 1em .5em 1em .5em;
+  width: 100%;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.nav__title {
+  font-size: 1.5em;
+  margin-left: 0.5em;
+  color: #b2b1b9;
+}
+
+.title__lock,
+.search__icon {
+  color: #ffd523;
+  margin-right: 0.2em;
+}
+
+.search__input {
+  border-radius: 10px;
+  width: 400px;
+  align-self: center;
+  max-width: 100%;
+}
+
+#username__section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: .2em;
+}
+
+.nav__username {
+  margin-right: .7em;
+  color: #B2B1B9;
+}
+
+.nav__logout__button {
+
+}
+
+
+// Middle section
+#middle__section {
+ margin-top: 6em;
+}
+
+
+// Footer Section
+
+#footer__section {
+  display: flex;
+  justify-content: center;
+  background-color: #595260;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #b2b1b9;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.copywright {
+  margin-top: 1em;
+}
