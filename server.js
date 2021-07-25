@@ -28,14 +28,11 @@ app.set('view engine', 'ejs');
 //------------------------------------------------------------------------------
 // Use middleware
 
+// Log server
 const morgan = require('morgan');
 app.use(morgan('dev'));
 
-app.use(express.urlencoded({ extended: false }));
-// Deprecated:
-// const bodyParser = require('body-parser');
-// app.use(bodyParser.urlencoded({ extended: true }));
-
+// Pre-process CSS
 const sass = require('node-sass-middleware');
 const sassOptions = {
   src: __dirname + '/styles',
@@ -45,19 +42,35 @@ const sassOptions = {
 };
 app.use('/styles', sass(sassOptions));
 
+// Parse body
+app.use(express.urlencoded({ extended: false }));
+
+// Encrypt session cookies
+const cookieSession = require('cookie-session');
+app.use(cookieSession({ name: 'session', keys: ['noema', 'noesis', 'sator'] }));
+
+// Method overriding for REST API
+// app.use((req, res, next) => {
+//   if (req.query._method) {
+//     req.method = req.query._method;
+//   }
+//   next();
+// });
+
+// Serve static files
 app.use(express.static('public')); // <== Home page
 
 //------------------------------------------------------------------------------
 // Create a separate router for each ressource
 
 const usersRoutes = require('./routes/users');
-const passwordRoutes = require('./routes/passwords');
+const passwordsRoutes = require('./routes/passwords');
 
 //------------------------------------------------------------------------------
 // Mount all ressource routers
 
-app.use('/api/users', usersRoutes(db));
-app.use('/api/passwords', passwordRoutes(db));
+app.use('/api', usersRoutes(db));
+app.use('/api/passwords', passwordsRoutes(db));
 
 //------------------------------------------------------------------------------
 // Render home page  <== Not used for SPA
