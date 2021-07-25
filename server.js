@@ -49,33 +49,15 @@ app.use(express.urlencoded({ extended: false }));
 const cookieSession = require('cookie-session');
 app.use(cookieSession({ name: 'session', keys: ['noema', 'noesis', 'sator'] }));
 
-// Method overriding for REST API
-// app.use((req, res, next) => {
-//   if (req.query._method) {
-//     req.method = req.query._method;
-//   }
-//   next();
-// });
-
-// Serve static files
-app.use(express.static('public')); // <== Home page
+// Serve static files: Including home page
+app.use(express.static('public'));
 
 //------------------------------------------------------------------------------
-// Create a separate router for each ressource
+// Create routers and mount
 
-const usersRoutes = require('./routes/users');
-const passwordsRoutes = require('./routes/passwords');
-
-//------------------------------------------------------------------------------
-// Mount all ressource routers
-
-app.use('/api', usersRoutes(db));
-app.use('/api/passwords', passwordsRoutes(db));
-
-//------------------------------------------------------------------------------
-// Render home page  <== Not used for SPA
-
-// app.get('/', (req, res) => res.render('index'));
+app.use('/', require('./routes/login')(db));
+app.use('/api/users', require('./routes/users')(db));
+app.use('/api/passwords', require('./routes/passwords')(db));
 
 //------------------------------------------------------------------------------
 // Start listening
