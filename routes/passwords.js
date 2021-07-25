@@ -23,49 +23,22 @@ module.exports = (db) => {
   router.get('/', (req, res) => {
     const user_id = req.session.user_id;
 
-    Promise.all([
-      // User information
-      db.query('SELECT login, name FROM users WHERE id = $1', [user_id]),
-      // List of organisations
-      db.query(
-        `SELECT DISTINCT orgs.name AS org_name
-        FROM users
-        JOIN orgs_users ON users.id = orgs_users.user_id
-        JOIN orgs ON orgs.id = orgs_users.org_id
-        WHERE users.id = $1
-        ORDER BY org_name;`,
-        [user_id]
-      ),
-      // List of categories
-      db.query(
-        `SELECT DISTINCT category
+    console.log('>>>>', req.query);
+
+    // List of passwords
+    db.query(
+      `SELECT passwords.*, org_name, category
         FROM users
         JOIN orgs_users ON users.id = orgs_users.user_id
         JOIN orgs ON orgs.id = orgs_users.org_id
         JOIN passwords ON orgs.id = passwords.org_id
-        WHERE users.id = $1
-        ORDER BY category;`,
-        [user_id]
-      ),
-      // List of passwords
-      db.query(
-        `SELECT passwords.*, orgs.name AS org_name
-        FROM users
-        JOIN orgs_users ON users.id = orgs_users.user_id
-        JOIN orgs ON orgs.id = orgs_users.org_id
-        JOIN passwords ON orgs.id = passwords.org_id
+        JOIN categories ON categories.id = passwords.category_id
         WHERE users.id = $1
         ORDER BY org_name, site_name;`,
-        [user_id]
-      ),
-    ])
-      .then(([user, orgs, categories, passwords]) => {
-        res.json({
-          user: user.rows[0],
-          orgs: orgs.rows,
-          categories: categories.rows,
-          passwords: passwords.rows,
-        });
+      [user_id]
+    )
+      .then((passwords) => {
+        res.json({ passwords: passwords.rows });
       })
       .catch(queryFailed(req, res));
   });
