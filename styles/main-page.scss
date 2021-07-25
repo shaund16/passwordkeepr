@@ -1,6 +1,6 @@
 body {
   overflow: hidden;
-  // background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEUsLkNy/5tYAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEUsLkNy/5tYAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=");
 }
 
 // Header section
@@ -29,10 +29,12 @@ nav {
 }
 
 .search__input {
-  border-radius: 10px;
-  width: 400px;
+  border-radius: 7px;
+  width: 350px;
   align-self: center;
+  outline: none;
   max-width: 100%;
+  background-color: #b2b1b9;
 }
 
 #username__section {
@@ -42,20 +44,111 @@ nav {
   margin-right: .2em;
 }
 
+.avatar {
+  margin-right: .3em;
+  font-size: 1.2em;
+}
+
 .nav__username {
-  margin-right: .7em;
+  margin-right: .8em;
   color: #B2B1B9;
 }
 
 .nav__logout__button {
+  background-color: #2C2E43;
+  color: #FFD523;
+  border-radius: 7px;
+  padding: .2em .5em .2em .5em;
+}
 
+.nav__logout__button:hover {
+  background-color: #FFD523;
+  color: #2C2E43;
 }
 
 
 // Middle section
+
+
 #middle__section {
- margin-top: 6em;
+ margin-top: 3em;
+ padding-top: 1.2em;
+ display: flex;
+ background-color: #B2B1B9;
+ flex-direction: column;
+ width: 220px;
+ height: 1000px;
+ color: #2C2E43;
+ font-family: "Rajdhani", sans-serif;
+ font-size: 20px;
 }
+
+.sidebar__icon {
+margin-right: 1em;
+margin-left: .5em;
+
+}
+
+.home {
+  margin-left: .4em;
+  margin-right: .9em;
+}
+
+.arrow__icon,
+.all__password__section,
+.my__passwords__section,
+.add__passwords__section {
+  padding: .6em 0 .6em 0;
+}
+
+.arrow__icon:hover,
+.all__password__section:hover,
+.my__passwords__section:hover,
+.add__passwords__section:hover,
+.organization__title:hover,
+.category__title:hover {
+  background-color: #2C2E43;
+  color:#ffd523;
+}
+
+
+.organization__section,
+.category__section {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.organization__title,
+.category__title {
+  padding: .5em 0 .5em 0;
+  font-size: 20px;
+}
+
+
+.organizations__list,
+.category__list {
+  list-style-type: none;
+  text-align: center;
+  font-size: 15px;
+}
+
+.organization__new,
+.category__new {
+  margin-right: 3em;
+  margin-top: 0;
+  padding: 0;
+}
+
+.category__section {
+  margin-bottom: 3em;
+}
+
+.arrow {
+  font-size: 5px;
+  padding-left: 1px;
+}
+
+
 
 
 // Footer Section
@@ -74,3 +167,9 @@ nav {
 .copywright {
   margin-top: 1em;
 }
+
+
+
+//  Media Queries
+
+
