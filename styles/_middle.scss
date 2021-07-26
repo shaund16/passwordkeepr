@@ -1,4 +1,5 @@
 //Edit and Add Passwords Middle Styles
+
 %middle__section {
   margin-top: 3em;
   padding-top: 1.2em;
@@ -17,5 +18,156 @@
 
 %sidebar__icon {
   margin-right: 1em;
+  margin-left: 0.5em;
+}
+
+%home {
+  margin-left: 0.4em;
+  margin-right: 0.9em;
+}
+
+%arrow__all__my__add__section {
+  padding: 0.6em 0 0.6em 0;
+}
+
+%organization__category__section {
+  text-align: center;
+  margin-top: 1em;
+}
+
+%organization__category__title {
+  padding: 0.5em 0 0.5em 0;
+  font-size: 20px;
+}
+
+%organization__category__list {
+  list-style-type: none;
+  text-align: center;
+  font-size: 15px;
+}
+
+%organization__category__new {
+  margin-right: 3em;
+  margin-top: 0;
+  padding: 0;
+}
+
+%category__section {
+  margin-bottom: 3em;
+}
+
+%arrow {
+  font-size: 5px;
+  padding-left: 1px;
+}
+
+
+// LOGIN AND REGISTER STYLES 
+
+%section__login {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 800px;
+  height: 450px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 2em 4em 2em 4em;
+  border: 2px solid $fourth-color;
+  background-color: $secondary-color;
+  border-radius: 10px;
+  font-family: $font-stack;
+}
+
+%section__register {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 800px;
+  height: 496px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 2em 4em 2em 4em;
+  border: 2px solid $fourth-color;
+  background-color: $secondary-color;
+  border-radius: 10px;
+  font-family: $font-stack;
+}
+
+%form__section {
+  display: flex;
+  flex-direction: column;
+}
+
+%form__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  color: $primary-color;
+}
+
+%header__icon {
+  font-size: 35px;
+  color: $fourth-color;
+}
+
+%header__title {
+  font-size: 40px;
+  color: $third-color;
+}
+
+%header__login {
+  font-size: 20px;
+  margin-top: 0.5em;
+  color: $fourth-color;
+}
+
+%form__email__password__name {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  color: $third-color;
+  outline: none;
+}
+
+%input {
+  background-color: $third-color;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+}
+
+%form__button {
+  margin-top: 1.5em;
+  width: 20%;
+  align-self: center;
+  border-radius: 7px;
+  background-color: $primary-color;
+  color: $fourth-color;
+}
+
+%register__link {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+  color: $primary-color;
+  text-decoration: none;
+}
+
+%login__section {
+  display: flex;
+  margin-top: 0.5em;
+  justify-content: center;
+}
+
+%createAccount__link {
+  color: $primary-color;
+  text-decoration: none;
   margin-left: 0.5em;
 }
