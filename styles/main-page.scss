@@ -1,5 +1,8 @@
 @import 'base';
 @import 'header';
+@import 'middle';
+@import 'footer';
+
 
 body {
  @extend %body;
@@ -47,33 +50,22 @@ nav {
 // Middle section
 
 #middle__section {
-  margin-top: 3em;
-  padding-top: 1.2em;
-  display: flex;
-  background-color: #b2b1b9;
-  flex-direction: column;
-  width: 220px;
-  height: 4000px;
-  color: #2c2e43;
-  font-family: "Rajdhani", sans-serif;
-  font-size: 20px;
+  @extend %middle__main;
 }
 
 .sidebar__icon {
-  margin-right: 1em;
-  margin-left: 0.5em;
+  @extend %sidebar__icon;
 }
 
 .home {
-  margin-left: 0.4em;
-  margin-right: 0.9em;
+  @extend %home;
 }
 
 .arrow__icon,
 .all__password__section,
 .my__passwords__section,
 .add__passwords__section {
-  padding: 0.6em 0 0.6em 0;
+ @extend %arrow__all__my__add__section;
 }
 
 .arrow__icon:hover,
@@ -82,61 +74,47 @@ nav {
 .add__passwords__section:hover,
 .organization__title:hover,
 .category__title:hover {
-  background-color: #2c2e43;
-  color: #ffd523;
+  background-color: $primary-color;
+  color: $fourth-color;
   cursor: pointer;
 }
 
 .organization__section,
 .category__section {
-  text-align: center;
-  margin-top: 1em;
+  @extend %organization__category__section;
 }
 
 .organization__title,
 .category__title {
-  padding: 0.5em 0 0.5em 0;
-  font-size: 20px;
+  @extend %organization__category__title;
 }
 
 .organizations__list,
 .category__list {
-  list-style-type: none;
-  text-align: center;
-  font-size: 15px;
+  @extend %organization__category__list;
 }
 
 .organization__new,
 .category__new {
-  margin-right: 3em;
-  margin-top: 0;
-  padding: 0;
+  @extend %organization__category__new;
 }
 
 .category__section {
-  margin-bottom: 3em;
+  @extend %category__section;
 }
 
 .arrow {
-  font-size: 5px;
-  padding-left: 1px;
+  @extend %arrow;
 }
 
 // Footer Section
 
 #footer__section {
-  display: flex;
-  justify-content: center;
-  background-color: #595260;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  color: #b2b1b9;
-  font-family: "Rajdhani", sans-serif;
+  @extend %footer__section;
 }
 
 .copywright {
-  margin-top: 1em;
+  @extend %copywright;
 }
 
 //  Media Queries
