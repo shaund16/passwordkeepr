@@ -1,21 +1,17 @@
 //------------------------------------------------------------------------------
-// Create browse passwords component
+// Create edit password form
 //------------------------------------------------------------------------------
 
-const createBrowsePasswords = (views, id) => {
+const createEditPassword = (views, id) => {
   views[id] = {
     component: $(`<section>`).attr('id', id),
-    query: '',
     id,
     views,
 
     update: function () {
-      $.get(`/api/passwords${this.query}`).then(({ passwords }) => {
-        this.component.empty();
-        passwords.forEach((pwd) =>
-          this.component.append(createPasswordCard(pwd, this.views))
-        );
-      });
+      this.component
+        .text('EDIT')
+        .css({ border: '1px solid black', margin: '1em' });
       return this.component;
     },
   };

@@ -2,18 +2,19 @@
 // Create sidebar component to filter the list of passwords
 //------------------------------------------------------------------------------
 
-const createSidebar = (state, id) => {
-  state.sidebar = {
+const createSidebar = (views, id) => {
+  views[id] = {
     component: $(`<section>`).attr('id', id),
     active: 'all-pwd',
     id,
-    state,
+    views,
 
     setFilter: function (cls, query) {
       return () => {
+        this.views.setView('browse');
         this.active = cls;
-        this.state.browse.query = query;
-        this.state.browse.update();
+        this.views.browse.query = query;
+        this.views.browse.update();
       };
     },
 
@@ -23,7 +24,7 @@ const createSidebar = (state, id) => {
         // Standard buttons
         const $add = $('<button class="add-pwd">Add password</button>').on(
           'click',
-          () => {}
+          () => this.views.setView('add')
         );
 
         const $all = $('<button class="all-pwd">All password</button>').on(
@@ -63,4 +64,6 @@ const createSidebar = (state, id) => {
       return this.component;
     },
   };
+
+  views[id].update();
 };

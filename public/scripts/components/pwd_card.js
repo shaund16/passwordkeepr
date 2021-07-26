@@ -1,8 +1,8 @@
 //------------------------------------------------------------------------------
-// Create card for a single password
+// Create component for a single password
 //------------------------------------------------------------------------------
 
-const createPasswordCard = (password, state) => {
+const createPasswordCard = (password, views) => {
   const $article = $('<article class="password">')
     .append(
       $('<div class="site_name">').text(password.site_name),
@@ -33,8 +33,7 @@ const createPasswordCard = (password, state) => {
     .on('click', () => navigator.clipboard.writeText(password.site_pwd));
 
   $article.find('.edit').on('click', () => {
-    console.log(password.id, 'Edit');
-    // setView('edit');
+    views.setView('edit');
   });
 
   $article.find('.delete').on('click', () => {
@@ -42,8 +41,8 @@ const createPasswordCard = (password, state) => {
       method: 'DELETE',
       url: `/api/passwords/${password.id}`,
     }).then(() => {
-      state.sidebar.update();
-      state.browse.update();
+      views.sidebar.update();
+      views.browse.update();
     });
   });
 
