@@ -1,0 +1,16 @@
+// Login and Register 
+
+%footer__section {
+  display: flex;
+  justify-content: center;
+  background-color: $secondary-color;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: $third-color;
+  font-family: $font-stack;
+}
+
+%copywright {
+  margin-top: 1em;
+}
