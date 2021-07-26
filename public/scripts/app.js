@@ -16,6 +16,7 @@ const createViews = (parent) => ({
     if (newComp === this.current) return;
     if (this.current) this.current.detach();
     this.current = newComp;
+    this[view].update();
     this.parent.append(this.current);
   },
 });

@@ -3,18 +3,30 @@
 //------------------------------------------------------------------------------
 
 const createNavbar = (views, id) => {
-  views[id] = {
-    component: $(`<nav>`).attr('id', id),
+  const view = {
+    component: null,
     id,
     views,
 
-    update: function () {
-      this.component
+    //--------------------------------------------------------------------------
+    // Initialize
+
+    init: function () {
+      this.component = $(`<nav>`)
+        .attr('id', id)
         .text('NAVIGATION')
         .css({ border: '1px solid black', margin: '1em' });
-      return this.component;
+      return this;
+    },
+
+    //--------------------------------------------------------------------------
+    // Update
+
+    update: function () {
+      return this;
     },
   };
 
-  views[id].update();
+  view.init().update();
+  views[id] = view;
 };

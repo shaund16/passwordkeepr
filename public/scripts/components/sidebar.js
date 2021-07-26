@@ -3,11 +3,14 @@
 //------------------------------------------------------------------------------
 
 const createSidebar = (views, id) => {
-  views[id] = {
-    component: $(`<section>`).attr('id', id),
+  const view = {
+    component: null,
     active: 'all-pwd',
     id,
     views,
+
+    //--------------------------------------------------------------------------
+    // Set the filter
 
     setFilter: function (cls, query) {
       return () => {
@@ -18,13 +21,26 @@ const createSidebar = (views, id) => {
       };
     },
 
+    //--------------------------------------------------------------------------
+    // Initialize
+
+    init: function () {
+      this.component = $(`<section>`).attr('id', id);
+      return this;
+    },
+
+    //--------------------------------------------------------------------------
+    // Update
+
     update: function () {
       // Ajax
       $.get('/api/users/filters').then(({ orgs, categories }) => {
         // Standard buttons
         const $add = $('<button class="add-pwd">Add password</button>').on(
           'click',
-          () => this.views.setView('add')
+          () => {
+            this.views.setView('add');
+          }
         );
 
         const $all = $('<button class="all-pwd">All password</button>').on(
@@ -65,5 +81,6 @@ const createSidebar = (views, id) => {
     },
   };
 
-  views[id].update();
+  view.init().update();
+  views[id] = view;
 };

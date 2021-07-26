@@ -3,11 +3,22 @@
 //------------------------------------------------------------------------------
 
 const createBrowsePasswords = (views, id) => {
-  views[id] = {
-    component: $(`<section>`).attr('id', id),
+  const view = {
+    component: null,
     query: '',
     id,
     views,
+
+    //--------------------------------------------------------------------------
+    // Initialize
+
+    init: function () {
+      this.component = $(`<section>`).attr('id', id);
+      return this;
+    },
+
+    //--------------------------------------------------------------------------
+    // Update
 
     update: function () {
       $.get(`/api/passwords${this.query}`).then(({ passwords }) => {
@@ -16,9 +27,10 @@ const createBrowsePasswords = (views, id) => {
           this.component.append(createPasswordCard(pwd, this.views))
         );
       });
-      return this.component;
+      return this;
     },
   };
 
-  views[id].update();
+  view.init().update();
+  views[id] = view;
 };

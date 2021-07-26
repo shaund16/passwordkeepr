@@ -121,6 +121,8 @@ module.exports = (db) => {
       date_created: new Date(),
     };
 
+    console.log('>>>', data);
+
     // Send query
     db.query(
       `INSERT INTO passwords (${queryFields(props)})
