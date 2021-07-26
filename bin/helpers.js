@@ -24,7 +24,7 @@ const statusCodeMessages = {
  * @return A function taking an error in and sending a JSON object back.
  */
 
-const sendError = (code, message) => (req, res) => (error) =>
+const sendError = (code, message) => (req, res) => (error) => {
   res.status(code).json({
     method: req.method,
     action: req.originalUrl,
@@ -33,6 +33,7 @@ const sendError = (code, message) => (req, res) => (error) =>
     message,
     error,
   });
+};
 
 const queryFailed = sendError(500, 'Database failed to process query');
 

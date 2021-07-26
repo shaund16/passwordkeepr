@@ -105,11 +105,11 @@ module.exports = (db) => {
     const props = [
       'org_id',
       'creator_id',
+      'category_id',
       'site_name',
       'site_url',
       'site_login',
       'site_pwd',
-      'category',
       'date_created',
     ];
 
