@@ -21,25 +21,39 @@ module.exports = (db) => {
   // GET /api/passwords => Browse
 
   router.get('/', (req, res) => {
-    const user_id = req.session.user_id;
+    const { type, id } = req.query;
+    let filterString = '';
+    const params = [req.session.user_id];
 
-    console.log('>>>>', req.query);
+    // Filter if necessary
+    switch (type) {
+      case 'own':
+        filterString = 'AND creator_id = $1';
+        break;
+      case 'org':
+        filterString = 'AND orgs.id = $2';
+        params.push(id);
+        break;
+      case 'cat':
+        filterString = 'AND category_id = $2';
+        params.push(id);
+        break;
+      default:
+    }
 
     // List of passwords
     db.query(
       `SELECT passwords.*, org_name, category
-        FROM users
-        JOIN orgs_users ON users.id = orgs_users.user_id
-        JOIN orgs ON orgs.id = orgs_users.org_id
-        JOIN passwords ON orgs.id = passwords.org_id
-        JOIN categories ON categories.id = passwords.category_id
-        WHERE users.id = $1
-        ORDER BY org_name, site_name;`,
-      [user_id]
+      FROM users
+      JOIN orgs_users ON users.id = orgs_users.user_id
+      JOIN orgs ON orgs.id = orgs_users.org_id
+      JOIN passwords ON orgs.id = passwords.org_id
+      JOIN categories ON categories.id = passwords.category_id
+      WHERE users.id = $1 ${filterString}
+      ORDER BY org_name, site_name;`,
+      params
     )
-      .then((passwords) => {
-        res.json({ passwords: passwords.rows });
-      })
+      .then(({ rows: passwords }) => res.json({ passwords }))
       .catch(queryFailed(req, res));
   });
 
