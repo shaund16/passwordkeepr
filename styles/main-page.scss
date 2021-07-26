@@ -1,64 +1,42 @@
+@import 'base';
+@import 'header';
+
 body {
-  overflow: hidden;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEUsLkNy/5tYAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=");
+ @extend %body;
 }
 
 // Header section
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #595260;
-  position: absolute;
-  top: 0;
-  padding: 1em 0.5em 1em 0.5em;
-  width: 100%;
-  font-family: "Rajdhani", sans-serif;
+  @extend %nav;
 }
 
 .nav__title {
-  font-size: 1.5em;
-  margin-left: 0.5em;
-  color: #b2b1b9;
+  @extend %nav__title;
 }
 
 .title__lock,
 .search__icon {
-  color: #ffd523;
-  margin-right: 0.2em;
+  @extend %title__lock__search__icon;
 }
 
 .search__input {
-  border-radius: 7px;
-  width: 500px;
-  align-self: center;
-  outline: none;
-  max-width: 100%;
-  background-color: #b2b1b9;
+  @extend %search__input;
 }
 
 #username__section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 0.2em;
+ @extend %username__section;
 }
 
 .avatar {
-  margin-right: 0.3em;
-  font-size: 1.2em;
+  @extend %avatar;
 }
 
 .nav__username {
-  margin-right: 0.8em;
-  color: #b2b1b9;
+  @extend %nav__username;
 }
 
 .nav__logout__button {
-  background-color: #2c2e43;
-  color: #ffd523;
-  border-radius: 7px;
-  padding: 0.2em 0.5em 0.2em 0.5em;
+ @extend %nav__logout__button;
 }
 
 .nav__logout__button:hover {
