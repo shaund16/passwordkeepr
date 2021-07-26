@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// jQuery component for one password
+// Create card for a single password
 //------------------------------------------------------------------------------
 
 const createPasswordCard = (password, state) => {
@@ -42,8 +42,8 @@ const createPasswordCard = (password, state) => {
       method: 'DELETE',
       url: `/api/passwords/${password.id}`,
     }).then(() => {
-      updateSideBar(state);
-      updatePasswordList(state);
+      state.sidebar.update();
+      state.browse.update();
     });
   });
 

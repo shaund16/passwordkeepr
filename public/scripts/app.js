@@ -3,21 +3,19 @@
 //------------------------------------------------------------------------------
 
 $(() => {
-  const state = {
-    sidebar: createSideBar(),
-    passwords: createPasswordList(),
-    query: '',
-    sidebar_active: 'all-pwd',
-  };
+  const state = {};
+
+  createBrowsePasswords(state, 'pwd-browse');
+  createSidebar(state, 'sidebar');
 
   const $body = $('#body');
 
-  // const $navbar = createNavbar();
+  console.log(state.browse);
+  state.browse.update();
 
-  updateSideBar(state);
-  updatePasswordList(state);
+  console.log(state.sidebar);
+  state.sidebar.update();
 
-  // $body.append($navbar);
-  $body.append(state.sidebar);
-  $body.append(state.passwords);
+  $body.append(state.sidebar.component);
+  $body.append(state.browse.component);
 });
