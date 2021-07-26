@@ -40,11 +40,7 @@ const updateSideBar = ($sidebar) => {
       // switch to add
       return;
     }
-
-    $.get(`/api/passwords?${type}=${id}`).then((json) => {
-      console.log(json);
-      updatePasswordList($components);
-    });
+    updatePasswordList($components, urlQuery({ type, id }));
   });
 
   //----------------------------------------------------------------------------

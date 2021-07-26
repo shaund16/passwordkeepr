@@ -2,11 +2,14 @@
 // jQuery component for a list of passwords
 //------------------------------------------------------------------------------
 
-const $passwords = $('<section id="passwords"><p>Loading...</p></section');
+const createPasswordList = () => $('<section id="passwords"></section');
 
-$('#main').append($passwords);
+const updatePasswordList = ($components, queryString = '') => {
+  const $passwords = $components.passwords;
 
-const appendPasswords = (passwords) => {
-  $passwords.empty();
-  passwords.forEach((pwd) => $passwords.append(createPassword(pwd)));
+  // Get passwords from server with optional filter query
+  $.get(`/api/passwords${queryString}`).then((json) => {
+    $passwords.empty();
+    json.passwords.forEach((pwd) => $passwords.append(createPasswordCard(pwd)));
+  });
 };
