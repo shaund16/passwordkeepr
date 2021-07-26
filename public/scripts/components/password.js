@@ -2,7 +2,7 @@
 // jQuery component for one password
 //------------------------------------------------------------------------------
 
-const createPasswordCard = (password) => {
+const createPasswordCard = (password, state) => {
   const $article = $('<article class="password">')
     .append(
       $('<div class="site_name">').text(password.site_name),
@@ -42,8 +42,8 @@ const createPasswordCard = (password) => {
       method: 'DELETE',
       url: `/api/passwords/${password.id}`,
     }).then(() => {
-      updateSideBar($components);
-      updatePasswordList($components);
+      updateSideBar(state);
+      updatePasswordList(state);
     });
   });
 

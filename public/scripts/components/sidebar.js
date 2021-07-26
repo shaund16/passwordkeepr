@@ -2,19 +2,13 @@
 // jQuery component for a side bar with filters
 //------------------------------------------------------------------------------
 
-const filterPasswords =
-  (query = '') =>
-  () => {
-    updatePasswordList($components, query);
-  };
-
 const createSideBar = () => $('<section id="side">');
 
-const updateSideBar = ($components) => {
-  const $sidebar = $components.sidebar;
+const updateSideBar = (state) => {
+  const $sidebar = state.sidebar;
 
   // Ajax
-  $.get('/api/users/filters').then(({ orgs, categories }) => {
+  $.get('/api/users/filters').then(function ({ orgs, categories }) {
     // Standard buttons
     const $add = $('<button class="add-pwd">Add password</button>').on(
       'click',
@@ -22,11 +16,19 @@ const updateSideBar = ($components) => {
     );
     const $all = $('<button class="all-pwd">All password</button>').on(
       'click',
-      filterPasswords()
+      () => {
+        state.sidebar_active = 'all-pwd';
+        state.query = '';
+        updatePasswordList(state);
+      }
     );
     const $own = $('<button class="own-pwd">My passwords</button>').on(
       'click',
-      filterPasswords('?type=own')
+      () => {
+        state.sidebar_active = 'own-pwd';
+        state.query = '?type=own';
+        updatePasswordList(state);
+      }
     );
 
     $sidebar
@@ -38,15 +40,24 @@ const updateSideBar = ($components) => {
     orgs.forEach(({ org_id, org_name }) => {
       $(`<button class="org-${org_id}">${org_name}</button>`)
         .appendTo($sidebar)
-        .on('click', filterPasswords(`?type=org&id=${org_id}`));
+        .on('click', () => {
+          state.sidebar_active = `org-${org_id}`;
+          state.query = `?type=org&id=${org_id}`;
+          updatePasswordList(state);
+        });
     });
+
     $sidebar.append($('<hr />'));
 
     // Append buttons to filter by category
     categories.forEach(({ cat_id, category }) => {
       $(`<button class="cat-${cat_id}">${category}</button>`)
         .appendTo($sidebar)
-        .on('click', filterPasswords(`?type=cat&id=${cat_id}`));
+        .on('click', () => {
+          state.sidebar_active = `cat-${cat_id}`;
+          state.query = `?type=cat&id=${cat_id}`;
+          updatePasswordList(state);
+        });
     });
   });
 

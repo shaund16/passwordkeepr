@@ -4,12 +4,14 @@
 
 const createPasswordList = () => $('<section id="passwords"></section');
 
-const updatePasswordList = ($components, queryString = '') => {
-  const $passwords = $components.passwords;
+const updatePasswordList = (state) => {
+  const $passwords = state.passwords;
 
   // Ajax
-  $.get(`/api/passwords${queryString}`).then((json) => {
+  $.get(`/api/passwords${state.query}`).then(function ({ passwords }) {
     $passwords.empty();
-    json.passwords.forEach((pwd) => $passwords.append(createPasswordCard(pwd)));
+    passwords.forEach((pwd) =>
+      $passwords.append(createPasswordCard(pwd, state))
+    );
   });
 };

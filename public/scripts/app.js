@@ -2,20 +2,22 @@
 // Main client side script
 //------------------------------------------------------------------------------
 
-const $components = {};
-
 $(() => {
+  const state = {
+    sidebar: createSideBar(),
+    passwords: createPasswordList(),
+    query: '',
+    sidebar_active: 'all-pwd',
+  };
+
   const $body = $('#body');
 
   // const $navbar = createNavbar();
 
-  $components.sidebar = createSideBar();
-  updateSideBar($components);
-
-  $components.passwords = createPasswordList();
-  updatePasswordList($components);
+  updateSideBar(state);
+  updatePasswordList(state);
 
   // $body.append($navbar);
-  $body.append($components.sidebar);
-  $body.append($components.passwords);
+  $body.append(state.sidebar);
+  $body.append(state.passwords);
 });
