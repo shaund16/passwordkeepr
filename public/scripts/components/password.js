@@ -38,8 +38,13 @@ const createPasswordCard = (password) => {
   });
 
   $article.find('.delete').on('click', () => {
-    console.log(password.id, 'Delete');
-    // delete
+    $.ajax({
+      method: 'DELETE',
+      url: `/api/passwords/${password.id}`,
+    }).then(() => {
+      updateSideBar($components);
+      updatePasswordList($components);
+    });
   });
 
   //----------------------------------------------------------------------------

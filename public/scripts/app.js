@@ -9,13 +9,13 @@ $(() => {
 
   // const $navbar = createNavbar();
 
-  const $sidebar = createSideBar();
-  updateSideBar($sidebar);
+  $components.sidebar = createSideBar();
+  updateSideBar($components);
 
   $components.passwords = createPasswordList();
   updatePasswordList($components);
 
   // $body.append($navbar);
-  $body.append($sidebar);
+  $body.append($components.sidebar);
   $body.append($components.passwords);
 });

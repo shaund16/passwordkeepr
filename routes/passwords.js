@@ -63,10 +63,7 @@ module.exports = (db) => {
   router.get('/:id', (req, res) => {
     const id = req.params.id;
     db.query('SELECT * FROM passwords WHERE id = $1;', [id])
-      .then((data) => {
-        const passwords = data.rows;
-        res.json({ passwords });
-      })
+      .then(({ rows: passwords }) => res.json({ passwords }))
       .catch(queryFailed(req, res));
   });
 
@@ -96,10 +93,7 @@ module.exports = (db) => {
       RETURNING *;`,
       params
     )
-      .then((data) => {
-        const passwords = data.rows;
-        res.json({ passwords });
-      })
+      .then(({ rows: passwords }) => res.json({ passwords }))
       .catch(queryFailed(req, res));
   });
 
@@ -134,10 +128,7 @@ module.exports = (db) => {
       RETURNING *;`,
       queryParams(data, props)
     )
-      .then((data) => {
-        const passwords = data.rows;
-        res.json({ passwords });
-      })
+      .then(({ rows: passwords }) => res.json({ passwords }))
       .catch(queryFailed(req, res));
   });
 
@@ -147,7 +138,7 @@ module.exports = (db) => {
   router.delete('/:id', (req, res) => {
     const id = req.params.id;
     db.query('DELETE FROM passwords WHERE id = $1 RETURNING *;', [id])
-      .then((data) => res.json({ deleted: data.rows }))
+      .then(({ rows: passwords }) => res.json({ passwords }))
       .catch(queryFailed(req, res));
   });
 
