@@ -1,0 +1,21 @@
+//Edit and Add Passwords Middle Styles
+%middle__section {
+  margin-top: 3em;
+  padding-top: 1.2em;
+  display: flex;
+  background-color: $third-color;
+  flex-direction: column;
+  width: 220px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  color: $primary-color;
+  font-family: $font-stack;
+  font-size: 20px;
+  opacity: 0.1;
+}
+
+%sidebar__icon {
+  margin-right: 1em;
+  margin-left: 0.5em;
+}
