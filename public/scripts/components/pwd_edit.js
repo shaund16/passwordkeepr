@@ -5,6 +5,8 @@
 const createEditPassword = (views, id) => {
   const view = {
     component: null,
+    genOptions: new Set(['lower', 'upper', 'digits']),
+    genLength: 10,
     pwd_id: -1,
     id,
     views,
@@ -84,12 +86,44 @@ const createEditPassword = (views, id) => {
             $input('Site URL', 'edit-url', 'site_url', 'text', password),
             $input('Login', 'edit-login', 'site_login', 'text', password),
             $input('Password', 'edit-pwd', 'site_pwd', 'text', password),
+
+            $btnIcon('gen btn-icon', 'button', 'angle-double-right'),
+            $button('lower toggle', 'button', 'a'),
+            $button('upper toggle', 'button', 'A'),
+            $button('digits toggle', 'button', '0'),
+            $button('symbols toggle', 'button', '#'),
+            $button('punct toggle', 'button', '?'),
+            $button('brackets toggle', 'button', '()'),
+            $(
+              `<input class="length" type="number" min="10" value="${this.genLength}">`
+            ),
+
+            $('<br />'),
             $categories,
             $orgs,
+
             $button('submit', 'submit', 'Submit'),
-            $button('reset', 'button', 'Reset'),
+            $button('reset', 'reset', 'Reset'),
             $button('cancel', 'button', 'Cancel')
           );
+
+          // Toggle generate options
+          [...this.genOptions].forEach((option) => {
+            $form.find(`.${option}`).addClass('on');
+          });
+
+          // Set length listener
+          $form.find('.length').on('change', setGenLength(this));
+
+          // Set toggle listeners
+          $form.find('.toggle').on('click', setGenOptions(this));
+
+          // Set generate listener
+          $form.find('.gen').on('click', () => {
+            $form
+              .find('#add-pwd')
+              .val(genPassword(this.genLength, this.genOptions));
+          });
 
           // Set cancel listener
           $form.find('.cancel').on('click', () => {
