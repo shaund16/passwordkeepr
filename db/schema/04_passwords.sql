@@ -4,10 +4,10 @@ CREATE TABLE passwords (
   id SERIAL PRIMARY KEY NOT NULL,
   org_id INTEGER REFERENCES orgs(id) ON DELETE CASCADE,
   creator_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   site_name VARCHAR(255) NOT NULL,
   site_url VARCHAR(255) NOT NULL,
   site_login VARCHAR(255) NOT NULL,
   site_pwd VARCHAR(255) NOT NULL,
-  category VARCHAR(255) NOT NULL,
-  date_created VARCHAR(255) NOT NULL
+  date_created DATE NOT NULL
 );
