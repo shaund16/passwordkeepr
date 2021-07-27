@@ -33,6 +33,7 @@ const createPasswordCard = (password, views) => {
     .on('click', () => navigator.clipboard.writeText(password.site_pwd));
 
   $article.find('.edit').on('click', () => {
+    views.edit.pwd_id = password.id;
     views.setView('edit');
   });
 
