@@ -18,39 +18,55 @@ const {
 
 module.exports = (db) => {
   //----------------------------------------------------------------------------
-  // GET /api/users => User information
+  // GET /api/users/filters => User information
 
   router.get('/filters', (req, res) => {
     const user_id = req.session.user_id;
+    const { id } = req.query;
 
-    Promise.all([
-      // List of organisations
-      db.query(
-        `SELECT DISTINCT orgs.id AS org_id, org_name
-        FROM users
-        JOIN orgs_users ON users.id = orgs_users.user_id
-        JOIN orgs ON orgs.id = orgs_users.org_id
-        WHERE users.id = $1
-        ORDER BY org_name;`,
-        [user_id]
-      ),
-      // List of categories
-      db.query(
-        `SELECT DISTINCT categories.id AS cat_id, category
-        FROM users
-        JOIN orgs_users ON users.id = orgs_users.user_id
-        JOIN orgs ON orgs.id = orgs_users.org_id
-        JOIN passwords ON orgs.id = passwords.org_id
-        JOIN categories ON categories.id = passwords.category_id
-        WHERE users.id = $1
-        ORDER BY category;`,
-        [user_id]
-      ),
-    ])
-      .then(([orgs, categories]) =>
-        res.json({ orgs: orgs.rows, categories: categories.rows })
-      )
-      .catch(queryFailed(req, res));
+    // Query list of organisations
+    const queryOrgs = `SELECT DISTINCT orgs.id AS org_id, org_name
+      FROM users
+      JOIN orgs_users ON users.id = orgs_users.user_id
+      JOIN orgs ON orgs.id = orgs_users.org_id
+      WHERE users.id = $1
+      ORDER BY org_name;`;
+
+    // Query list of categories
+    const queryCategories = `SELECT DISTINCT categories.id AS cat_id, category
+      FROM users
+      JOIN orgs_users ON users.id = orgs_users.user_id
+      JOIN orgs ON orgs.id = orgs_users.org_id
+      JOIN passwords ON orgs.id = passwords.org_id
+      JOIN categories ON categories.id = passwords.category_id
+      WHERE users.id = $1
+      ORDER BY category;`;
+
+    if (id) {
+      // Get organisations, categories and password
+      const queryPassword = `SELECT * FROM passwords WHERE id = $1;`;
+
+      Promise.all([
+        db.query(queryOrgs, [user_id]),
+        db.query(queryCategories, [user_id]),
+        db.query(queryPassword, [id]),
+      ])
+        .then(([{ rows: orgs }, { rows: categories }, { rows: passwords }]) =>
+          res.json({ orgs, categories, passwords })
+        )
+        .catch(queryFailed(req, res));
+
+      // Get only organisations and categories
+    } else {
+      Promise.all([
+        db.query(queryOrgs, [user_id]),
+        db.query(queryCategories, [user_id]),
+      ])
+        .then(([{ rows: orgs }, { rows: categories }]) =>
+          res.json({ orgs, categories })
+        )
+        .catch(queryFailed(req, res));
+    }
   });
 
   return router;

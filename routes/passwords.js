@@ -74,22 +74,33 @@ module.exports = (db) => {
     // Set query fields
     const props = [
       'org_id',
+      'category_id',
       'site_name',
       'site_url',
       'site_login',
       'site_pwd',
-      'category',
     ];
+
+    console.log('>>>', req.body);
 
     // Prepare query data
     const params = queryParams(req.body, props);
     params.push(req.params.id); // push password id
 
+    console.log(
+      `UPDATE passwords
+      SET ${queryFieldValuePairs(props)}
+      WHERE id = $${params.length}
+      RETURNING *;`
+    );
+
+    console.log(params);
+
     // Send query
     db.query(
       `UPDATE passwords
       SET ${queryFieldValuePairs(props)}
-      WHERE id = $${params.length + 1}
+      WHERE id = $${params.length}
       RETURNING *;`,
       params
     )
