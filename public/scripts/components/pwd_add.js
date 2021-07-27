@@ -49,39 +49,38 @@ const createAddPassword = (views, id) => {
       // Ajax
       $.get('/api/users/filters').then(({ orgs, categories }) => {
         // Dynamic field: Categories
-        const $categories = $('<select id="category_id" name="category_id">');
-        categories.forEach(({ cat_id, category }) => {
-          const $option = $('<option>').attr('value', cat_id).text(category);
-          $categories.append($option);
-        });
+        const $categories = $select(
+          'Category:',
+          'add-category-id',
+          'category_id',
+          categories,
+          'cat_id',
+          'category'
+        );
 
-        // Dynamic field: Organisations
-        const $orgs = $('<select id="org_id" name="org_id">');
-        orgs.forEach(({ org_id, org_name }) => {
-          const $option = $('<option>').attr('value', org_id).text(org_name);
-          $orgs.append($option);
-        });
+        // Dynamic field: Organizations
+        const $orgs = $select(
+          'Organization:',
+          'add-org-id',
+          'org_id',
+          orgs,
+          'org_id',
+          'org_name'
+        );
 
         // Append
         const $form = this.component.find('form');
-        $form
-          .empty()
-          .append(
-            '<label for="site_name">Site name:</label><br>',
-            '<input id="site_name" name="site_name" type="text" value=""><br>',
-            '<label for="site_url">Site URL:</label><br>',
-            '<input id="site_url" name="site_url" type="text" value=""><br>',
-            '<label for="site_login">Username:</label><br>',
-            '<input id="site_login" name="site_login" type="text" value=""><br>',
-            '<label for="site_pwd">Password:</label><br>',
-            '<input id="site_pwd" name="site_pwd" type="text" value=""><br>',
-            '<label for="category_id">Category:</label><br>',
-            $categories,
-            '<br><label for="org_id">Organization:</label><br>',
-            $orgs,
-            '<br><button class="submit" type="submit">Submit</button>',
-            '<button class="cancel" type="button">Cancel</button>'
-          );
+        $form.empty();
+        $form.append(
+          $input('Site name', 'add-name', 'site_name', 'text'),
+          $input('Site URL', 'add-url', 'site_url', 'text'),
+          $input('Login', 'add-login', 'site_login', 'text'),
+          $input('Password', 'add-pwd', 'site_pwd', 'text'),
+          $categories,
+          $orgs,
+          $button('submit', 'submit', 'Submit'),
+          $button('cancel', 'button', 'Cancel')
+        );
 
         // Set cancel listener
         $form.find('.cancel').on('click', () => {

@@ -81,20 +81,9 @@ module.exports = (db) => {
       'site_pwd',
     ];
 
-    console.log('>>>', req.body);
-
     // Prepare query data
     const params = queryParams(req.body, props);
     params.push(req.params.id); // push password id
-
-    console.log(
-      `UPDATE passwords
-      SET ${queryFieldValuePairs(props)}
-      WHERE id = $${params.length}
-      RETURNING *;`
-    );
-
-    console.log(params);
 
     // Send query
     db.query(
@@ -131,8 +120,6 @@ module.exports = (db) => {
       creator_id: user_id,
       date_created: new Date(),
     };
-
-    console.log('>>>', data);
 
     // Send query
     db.query(

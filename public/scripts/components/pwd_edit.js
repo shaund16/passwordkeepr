@@ -38,7 +38,7 @@ const createEditPassword = (views, id) => {
           method: 'PUT',
           url: `/api/passwords/${this.pwd_id}`,
           data: $('#edit-form').serialize(),
-        }).then((data) => {
+        }).then(() => {
           this.clear();
           this.views.sidebar.update();
           this.views.browse.update();
@@ -55,57 +55,41 @@ const createEditPassword = (views, id) => {
     update: function () {
       // Ajax
       $.get(`/api/users/filters?id=${this.pwd_id}`).then(
-        ({ orgs, categories, passwords }) => {
-          //
-          // Helper: Create label and input element
-          const $input = (label, id, type, value) => [
-            $(`<label for="${id}">${label}:</label>`),
-            $('<br />'),
-            $(`<input id="${id}" name="${id}" type="${type}">`).val(value),
-            $('<br />'),
-          ];
-
+        ({ orgs, categories, passwords: [password] }) => {
           // Dynamic field: Categories
-          const $select_cat = $('<select id="category_id" name="category_id">');
-          const $categories = [
-            $('<label for="category_id">Category:</label>'),
-            $('<br />'),
-            $select_cat,
-            $('<br />'),
-          ];
-          categories.forEach(({ cat_id, category }) => {
-            const $option = $('<option>').attr('value', cat_id).text(category);
-            $select_cat.append($option);
-          });
+          const $categories = $select(
+            'Category:',
+            'edit-category-id',
+            'category_id',
+            categories,
+            'cat_id',
+            'category'
+          );
 
-          // Dynamic field: Organisations
-          const $select_org = $('<select id="org_id" name="org_id">');
-          const $orgs = [
-            $('<label for="org_id">Organization:</label>'),
-            $('<br />'),
-            $select_org,
-            $('<br />'),
-          ];
-          orgs.forEach(({ org_id, org_name }) => {
-            const $option = $('<option>').attr('value', org_id).text(org_name);
-            $select_org.append($option);
-          });
+          // Dynamic field: Organizations
+          const $orgs = $select(
+            'Organization:',
+            'edit-org-id',
+            'org_id',
+            orgs,
+            'org_id',
+            'org_name'
+          );
 
           // Append
           const $form = this.component.find('form');
-          $form
-            .empty()
-            .append(
-              $input('Site name', 'site_name', 'text', passwords[0].site_name),
-              $input('Site URL', 'site_url', 'text', passwords[0].site_url),
-              $input('Login', 'site_login', 'text', passwords[0].site_login),
-              $input('Password', 'site_pwd', 'text', passwords[0].site_pwd),
-              $categories,
-              $orgs,
-              '<button class="submit" type="submit">Submit</button>',
-              '<button class="reset" type="button">Reset</button>',
-              '<button class="cancel" type="button">Cancel</button>'
-            );
+          $form.empty();
+          $form.append(
+            $input('Site name', 'edit-name', 'site_name', 'text', password),
+            $input('Site URL', 'edit-url', 'site_url', 'text', password),
+            $input('Login', 'edit-login', 'site_login', 'text', password),
+            $input('Password', 'edit-pwd', 'site_pwd', 'text', password),
+            $categories,
+            $orgs,
+            $button('submit', 'submit', 'Submit'),
+            $button('reset', 'button', 'Reset'),
+            $button('cancel', 'button', 'Cancel')
+          );
 
           // Set cancel listener
           $form.find('.cancel').on('click', () => {
