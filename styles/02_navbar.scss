@@ -1,0 +1,76 @@
+//------------------------------------------------------------------------------
+// nav.scss
+//------------------------------------------------------------------------------
+
+@use 'base';
+
+#navbar {
+  background-color: base.$col-medium;
+  padding: 0 12px 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+  @include base.b-shadow(0.9);
+  z-index: 10;
+
+  .logo {
+    i {
+      color: base.$col-highlight;
+      padding-right: 0.5em;
+    }
+
+    div {
+      @include base.font-special(28px);
+    }
+  }
+
+  .search {
+    padding: 0 3em;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+
+    .fas {
+      position: absolute;
+      width: 40px;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    input {
+      font-size: 20px;
+      flex-grow: 1;
+      padding: 0.2em 0.5em 0.2em 40px;
+      outline: none;
+      border: 1px solid base.$col-medium;
+      background-color: base.$col-xlight;
+
+      &:hover {
+        border-color: base.$col-dark;
+        background-color: base.$col-white;
+      }
+
+      &:focus {
+        color: base.$col-dark;
+        background-color: base.$col-white;
+      }
+    }
+  }
+
+  .user {
+    button {
+      border: none;
+      width: 2em;
+      height: 2em;
+      @include base.button(base.$col-highlight);
+      @include base.lift();
+      color: base.$col-light;
+      background-color: base.$col-medium;
+
+      &:hover {
+        background-color: base.$col-medium;
+      }
+    }
+  }
+}

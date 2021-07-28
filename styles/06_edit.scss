@@ -1,6 +1,12 @@
-#add, #edit {
+//------------------------------------------------------------------------------
+// edit.scss
+//------------------------------------------------------------------------------
 
-  .toggle, .btn-icon {
+@use 'base';
+
+#edit {
+  .toggle,
+  .btn-icon {
     width: 2em;
     height: 2em;
     border: 0;
@@ -10,7 +16,8 @@
     border-color: #888;
     background-color: #303030;
 
-    &:hover, &.on:hover {
+    &:hover,
+    &.on:hover {
       background-color: #484848;
       cursor: pointer;
     }

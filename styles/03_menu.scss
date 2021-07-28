@@ -1,0 +1,39 @@
+//------------------------------------------------------------------------------
+// menu.scss
+//------------------------------------------------------------------------------
+
+@use 'base';
+
+#menu {
+  background-color: base.$col-light;
+  @include base.font-special(22px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 10px;
+  @include base.b-shadow(0.9);
+  z-index: 5;
+  white-space: nowrap;
+
+  button {
+    padding: 6px 0;
+    text-align: left;
+    @include base.button(base.$col-dark);
+
+    .fas {
+      width: 40px;
+      text-align: center;
+    }
+
+    div {
+      padding: 0 20px 0 5px;
+    }
+  }
+
+  .hr {
+    width: 100%;
+    height: 1px;
+    margin: 10px 0;
+    background-color: base.$col-medium;
+  }
+}

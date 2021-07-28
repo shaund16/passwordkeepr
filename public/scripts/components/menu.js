@@ -1,8 +1,8 @@
 //------------------------------------------------------------------------------
-// Create sidebar component to filter the list of passwords
+// Create menu component to filter the list of passwords
 //------------------------------------------------------------------------------
 
-const createSidebar = (views, id) => {
+const createMenu = (views, id) => {
   const view = {
     component: null,
     active: 'all-pwd',
@@ -26,6 +26,11 @@ const createSidebar = (views, id) => {
 
     init: function () {
       this.component = $(`<section>`).attr('id', id);
+      this.update();
+
+      this.views[this.id] = this;
+      this.views.append(id);
+
       return this;
     },
 
@@ -36,42 +41,41 @@ const createSidebar = (views, id) => {
       // Ajax
       $.get('/api/users/filters').then(({ orgs, categories }) => {
         // Standard buttons
-        const $add = $('<button class="add-pwd">Add password</button>').on(
-          'click',
-          () => {
-            this.views.setView('add');
-          }
-        );
+        const $add = $btnIconText('add-pwd', 'plus', 'Add password');
+        $add.on('click', () => this.views.setView('add'));
 
-        const $all = $('<button class="all-pwd">All password</button>').on(
-          'click',
-          this.setFilter('all-pwd', '')
-        );
+        const $all = $btnIconText('all-pwd', 'home', 'All passwords');
+        $all.on('click', this.setFilter('all-pwd', ''));
 
-        const $own = $('<button class="own-pwd">My passwords</button>').on(
-          'click',
-          this.setFilter('own-pwd', '?type=own')
-        );
+        const $own = $btnIconText('own-pwd', 'user', 'Own passwords');
+        $own.on('click', this.setFilter('own-pwd', '?type=own'));
 
         this.component
           .empty()
-          .append($add, $('<hr />'), $all, $own, $('<hr />'))
-          .css({ border: '1px solid blue', margin: '1em' });
+          .append(
+            $add,
+            $('<div class="hr">'),
+            $all,
+            $own,
+            $('<div class="hr">')
+          );
 
         // Append buttons to filter by organization
         orgs.forEach(({ org_id, org_name }) => {
           const cls = `org-${org_id}`;
-          $(`<button class="${cls}">${org_name}</button>`)
+          const $button = $btnIconText(cls, '', org_name);
+          $button
             .appendTo(this.component)
             .on('click', this.setFilter(cls, `?type=org&id=${org_id}`));
         });
 
-        this.component.append($('<hr />'));
+        this.component.append($($('<div class="hr">')));
 
         // Append buttons to filter by category
         categories.forEach(({ cat_id, category }) => {
           const cls = `cat-${cat_id}`;
-          $(`<button class="${cls}">${category}</button>`)
+          const $button = $btnIconText(cls, '', category);
+          $button
             .appendTo(this.component)
             .on('click', this.setFilter(cls, `?type=cat&id=${cat_id}`));
         });
@@ -81,6 +85,5 @@ const createSidebar = (views, id) => {
     },
   };
 
-  view.init().update();
-  views[id] = view;
+  view.init();
 };
