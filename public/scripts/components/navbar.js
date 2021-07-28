@@ -14,7 +14,6 @@ const createNavbar = (views, id) => {
     init: function () {
       const $nav = $('<nav>').attr('id', id);
       this.component = $nav;
-
       this.views[this.id] = this;
       this.views.append(id);
 

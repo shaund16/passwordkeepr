@@ -19,8 +19,8 @@
     @include base.b-shadow(0.9);
 
     display: grid;
-    grid-template-columns: 70px 160px 70px;
-    grid-template-rows: 35px 35px 35px;
+    grid-template-columns: 75px 150px 75px;
+    grid-template-rows: 37.5px 37.5px 35px;
     align-items: stretch;
     justify-items: stretch;
 
@@ -30,8 +30,8 @@
       padding: 5px;
 
       img {
-        width: 60px;
-        height: 60px;
+        width: 65px;
+        height: 65px;
         border: none;
         background-color: scale-color(base.$col-light, $lightness: -20%);
       }

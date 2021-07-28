@@ -22,11 +22,14 @@ const createAddPassword = (views, id) => {
     // Initialize
 
     init: function () {
-      this.component = $('<section>')
-        .attr('id', id)
-        .css({ border: '1px solid black', margin: '1em' });
+      const $add = $(`<section>`).attr('id', id);
+      this.component = $add;
+      this.views[this.id] = this;
+      this.views.append(id);
 
-      const $form = $('<form>').attr('id', 'add-form').appendTo(this.component);
+      const $modal = $('<div class="modal">').appendTo($add);
+      const $form = $('<form id="add-form">').appendTo($modal);
+      this.update();
 
       // Set submit listener
       $form.on('submit', (event) => {
@@ -35,7 +38,7 @@ const createAddPassword = (views, id) => {
         // Post form data to server
         $.post('/api/passwords', $('#add-form').serialize()).then((data) => {
           this.clear();
-          this.views.sidebar.update();
+          this.views.menu.update();
           this.views.browse.update();
           this.views.setView('browse');
         });
@@ -128,6 +131,5 @@ const createAddPassword = (views, id) => {
     },
   };
 
-  view.init().update();
-  views[id] = view;
+  view.init();
 };

@@ -41,7 +41,7 @@ const createPasswordCard = (password, views) => {
       method: 'DELETE',
       url: `/api/passwords/${password.id}`,
     }).then(() => {
-      views.sidebar.update();
+      views.menu.update();
       views.browse.update();
     });
   });

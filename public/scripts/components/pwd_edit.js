@@ -42,7 +42,7 @@ const createEditPassword = (views, id) => {
           data: $('#edit-form').serialize(),
         }).then(() => {
           this.clear();
-          this.views.sidebar.update();
+          this.views.menu.update();
           this.views.browse.update();
           this.views.setView('browse');
         });

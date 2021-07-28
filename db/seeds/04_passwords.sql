@@ -8,7 +8,7 @@ INSERT INTO passwords (
   'password', '2020-01-01'),
 (1, 1, 1, 'Scribd', 'https://www.scribd.com/', 'prog@rock.org',
   'password', '2020-01-01'),
-(1, 2, 1, 'Vancouver Library', 'https://www.vpl.ca/', 'prog@rock.org',
+(1, 2, 1, 'VPL (library)', 'https://www.vpl.ca/', 'prog@rock.org',
   'password', '2020-01-01'),
 (1, 2, 1, 'Soundcloud', 'https://soundcloud.com/', 'prog@rock.org',
   'password', '2020-01-01'),

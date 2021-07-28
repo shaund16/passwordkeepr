@@ -28,5 +28,5 @@ $(() => {
   createBrowsePasswords(views, 'browse');
   // createEditPassword(views, 'edit');
   // createAddPassword(views, 'add');
-  views.setView('browse');
+  // views.setView('browse');
 });
