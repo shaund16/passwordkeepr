@@ -1,0 +1,80 @@
+//------------------------------------------------------------------------------
+// content.scss
+//------------------------------------------------------------------------------
+
+@use 'base';
+
+#browse {
+  background-color: base.$col-dark;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 20px;
+
+  .password {
+    color: base.$col-dark;
+    background-color: base.$col-light;
+    @include base.font-main(18px);
+    @include base.b-shadow(0.9);
+
+    display: grid;
+    grid-template-columns: 70px 160px 70px;
+    grid-template-rows: 35px 35px 35px;
+    align-items: stretch;
+    justify-items: stretch;
+
+    .logo {
+      grid-column: 1;
+      grid-row: 1 / 3;
+      padding: 5px;
+
+      img {
+        width: 60px;
+        height: 60px;
+        border: none;
+        background-color: scale-color(base.$col-light, $lightness: -20%);
+      }
+    }
+
+    .site_name {
+      grid-column: 2;
+      grid-row: 1;
+      padding: 5px 0 0 5px;
+    }
+
+    .site_login {
+      grid-column: 2;
+      grid-row: 2;
+      padding: 0 0 0 5px;
+    }
+
+    .go-to {
+      grid-column: 3;
+      grid-row: 1 / 3;
+      font-size: 26px;
+      @include base.button(base.$col-highlight);
+      @include base.lift();
+
+      &:hover {
+        background-color: base.$col-light;
+      }
+    }
+
+    .buttons {
+      grid-column: 1 / 4;
+      grid-row: 3;
+      border-top: 1px solid black;
+
+      display: flex;
+      flex-direction: row;
+      justify-items: stretch;
+      align-items: stretch;
+
+      button {
+        flex: 1;
+        @include base.button(base.$col-highlight);
+      }
+    }
+  }
+}

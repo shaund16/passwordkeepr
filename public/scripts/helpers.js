@@ -44,7 +44,7 @@ const $button = (cls, type, text) =>
 //------------------------------------------------------------------------------
 // Create button element with icon
 
-const $btnIcon = (cls, type, icon) => {
+const $btnIcon = (cls, icon, type = 'button') => {
   const $button = $('<button>').attr('type', type).addClass(cls);
   $button.append($('<i>').addClass(`fas fa-${icon}`));
   return $button;

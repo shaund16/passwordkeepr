@@ -25,9 +25,8 @@ $(() => {
   const views = createViews($('#body'));
   createNavbar(views, 'navbar');
   createMenu(views, 'menu');
-  // createBrowsePasswords(views, 'browse');
+  createBrowsePasswords(views, 'browse');
   // createEditPassword(views, 'edit');
   // createAddPassword(views, 'add');
-  // views.append('navbar', 'sidebar');
-  // views.setView('browse');
+  views.setView('browse');
 });

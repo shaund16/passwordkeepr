@@ -11,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   white-space: nowrap;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  @include base.b-shadow(0.9);
   z-index: 10;
 
   .logo {
@@ -61,13 +61,15 @@
   .user {
     button {
       border: none;
-      background-color: inherit;
       width: 2em;
       height: 2em;
+      @include base.button(base.$col-highlight);
+      @include base.lift();
       color: base.$col-light;
+      background-color: base.$col-medium;
 
       &:hover {
-        color: base.$col-highlight;
+        background-color: base.$col-medium;
       }
     }
   }

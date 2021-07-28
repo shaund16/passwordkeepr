@@ -26,3 +26,37 @@ $font-stack: 'Rajdhani', sans-serif;
   font-family: 'Open Sans', sans-serif;
   font-size: $size;
 }
+
+//------------------------------------------------------------------------------
+// Buttons
+
+@mixin button($highlight) {
+  border: none;
+  color: $col-dark;
+  background-color: $col-light;
+
+  &:hover {
+    cursor: pointer;
+    color: $highlight;
+    background-color: scale-color($col-light, $lightness: -20%);
+  }
+}
+
+//------------------------------------------------------------------------------
+// Shadows
+
+@mixin b-shadow($opacity) {
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, $opacity);
+}
+
+//------------------------------------------------------------------------------
+// Animations
+
+@mixin lift() {
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0);
+  transition: text-shadow 0.4s ease-in-out;
+
+  &:hover {
+    text-shadow: -4px 4px 10px rgba(0, 0, 0, 0.9);
+  }
+}

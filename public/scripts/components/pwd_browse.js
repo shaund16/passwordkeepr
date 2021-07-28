@@ -14,6 +14,11 @@ const createBrowsePasswords = (views, id) => {
 
     init: function () {
       this.component = $(`<section>`).attr('id', id);
+      this.update();
+
+      this.views[this.id] = this;
+      this.views.append(id);
+
       return this;
     },
 
@@ -31,6 +36,5 @@ const createBrowsePasswords = (views, id) => {
     },
   };
 
-  view.init().update();
-  views[id] = view;
+  view.init();
 };

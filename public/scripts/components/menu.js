@@ -48,7 +48,7 @@ const createMenu = (views, id) => {
         $all.on('click', this.setFilter('all-pwd', ''));
 
         const $own = $btnIconText('own-pwd', 'user', 'Own passwords');
-        $all.on('click', this.setFilter('own-pwd', ''));
+        $own.on('click', this.setFilter('own-pwd', '?type=own'));
 
         this.component
           .empty()
