@@ -1,13 +1,13 @@
 %body {
   overflow: hidden;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEUsLkNy/5tYAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=");
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEUsLkNy/5tYAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=');
 }
 
 %nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $secondary-color;
+  background-color: $col-medium;
   position: absolute;
   top: 0;
   padding: 1em 0.5em 1em 0.5em;
@@ -19,16 +19,16 @@
 %nav__title {
   font-size: 1.6em;
   margin-left: 0.5em;
-  color: $third-color;
+  color: $col-light;
 }
 
 %title__lock {
-  color: $fourth-color;
+  color: $col-highlight;
   margin-right: 0.2em;
 }
 
 %title__lock__search__icon {
-  color: $fourth-color;
+  color: $col-highlight;
   margin-right: 0.2em;
 }
 
@@ -38,7 +38,7 @@
   align-self: center;
   outline: none;
   max-width: 100%;
-  background-color: $third-color;
+  background-color: $col-light;
 }
 
 %username__section {
@@ -55,23 +55,21 @@
 
 %nav__username {
   margin-right: 0.8em;
-  color: $third-color;
+  color: $col-light;
 }
 
 %nav__logout__button {
-  background-color: $primary-color;
-  color: $fourth-color;
+  background-color: $col-dark;
+  color: $col-highlight;
   border-radius: 7px;
   padding: 0.2em 0.5em 0.2em 0.5em;
-  
 }
-
 
 // My Password Header Section
 
 %body__html {
   overflow: scroll;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEUsLkNy/5tYAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=");
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEUsLkNy/5tYAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=');
   padding: 0;
   margin: 0;
   height: 100%;

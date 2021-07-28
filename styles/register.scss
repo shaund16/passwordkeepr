@@ -76,11 +76,11 @@ input {
 }
 
 .register__link:hover {
-  color: $fourth-color;
+  color: $col-highlight;
 }
 
 #footer__section {
- @extend %footer__section;
+  @extend %footer__section;
 }
 
 .copywright {

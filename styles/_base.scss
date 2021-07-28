@@ -1,5 +1,28 @@
-$primary-color: #2c2e43;
-$secondary-color: #595260;
-$third-color: #B2B1B9;
-$fourth-color: #FFD523;
-$font-stack: "Rajdhani", sans-serif;
+//------------------------------------------------------------------------------
+// _base.scss
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// Colors
+
+$col-dark: #2c2e43;
+$col-medium: #595260;
+$col-light: #b2b1b9;
+$col-xlight: #e0e0e0;
+$col-white: #ffffff;
+$col-highlight: #ffd523;
+
+$font-stack: 'Rajdhani', sans-serif;
+
+//------------------------------------------------------------------------------
+// Fonts
+
+@mixin font-special($size) {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: $size;
+}
+
+@mixin font-main($size) {
+  font-family: 'Open Sans', sans-serif;
+  font-size: $size;
+}

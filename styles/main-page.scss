@@ -3,9 +3,8 @@
 @import 'middle';
 @import 'footer';
 
-
 body {
- @extend %body;
+  @extend %body;
 }
 
 // Header section
@@ -27,7 +26,7 @@ nav {
 }
 
 #username__section {
- @extend %username__section;
+  @extend %username__section;
 }
 
 .avatar {
@@ -39,7 +38,7 @@ nav {
 }
 
 .nav__logout__button {
- @extend %nav__logout__button;
+  @extend %nav__logout__button;
 }
 
 .nav__logout__button:hover {
@@ -65,7 +64,7 @@ nav {
 .all__password__section,
 .my__passwords__section,
 .add__passwords__section {
- @extend %arrow__all__my__add__section;
+  @extend %arrow__all__my__add__section;
 }
 
 .arrow__icon:hover,
@@ -74,8 +73,8 @@ nav {
 .add__passwords__section:hover,
 .organization__title:hover,
 .category__title:hover {
-  background-color: $primary-color;
-  color: $fourth-color;
+  background-color: $col-dark;
+  color: $col-highlight;
   cursor: pointer;
 }
 
