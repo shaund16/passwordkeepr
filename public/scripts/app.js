@@ -23,13 +23,11 @@ const createViews = (parent) => ({
 
 $(() => {
   const views = createViews($('#body'));
-
   createNavbar(views, 'navbar');
-  createSidebar(views, 'sidebar');
-  createBrowsePasswords(views, 'browse');
-  createEditPassword(views, 'edit');
-  createAddPassword(views, 'add');
-
-  views.append('navbar', 'sidebar');
-  views.setView('browse');
+  createMenu(views, 'menu');
+  // createBrowsePasswords(views, 'browse');
+  // createEditPassword(views, 'edit');
+  // createAddPassword(views, 'add');
+  // views.append('navbar', 'sidebar');
+  // views.setView('browse');
 });

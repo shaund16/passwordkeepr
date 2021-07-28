@@ -42,13 +42,21 @@ const $button = (cls, type, text) =>
   $('<button>').addClass(cls).attr('type', type).text(text);
 
 //------------------------------------------------------------------------------
-// Create icons
+// Create button element with icon
 
-$btnIcon = (cls, type, icon) => {
+const $btnIcon = (cls, type, icon) => {
   const $button = $('<button>').attr('type', type).addClass(cls);
   $button.append($('<i>').addClass(`fas fa-${icon}`));
   return $button;
 };
+
+//------------------------------------------------------------------------------
+// Create button element with icon and text
+
+const $btnIconText = (cls, icon, text, type = 'button') =>
+  $(`<button class="${cls}" type="${type}">
+    <i class="fas fa-${icon}"></i><div>${text}</div>
+  </button>`);
 
 //------------------------------------------------------------------------------
 // Generate random password
