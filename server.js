@@ -33,14 +33,15 @@ const morgan = require('morgan');
 app.use(morgan('dev'));
 
 // Pre-process CSS
-const sass = require('node-sass-middleware');
-const sassOptions = {
-  src: __dirname + '/styles',
-  dest: __dirname + '/public/styles',
-  debug: true,
-  outputStyle: 'expanded',
-};
-app.use('/styles', sass(sassOptions));
+// const sass = require('node-sass-middleware');
+// const sassOptions = {
+//   src: __dirname + '/styles',
+//   dest: __dirname + '/public/styles',
+//   debug: true,
+//   outputStyle: 'expanded',
+//   indentedSyntax: true,
+// };
+// app.use('/styles', sass(sassOptions));
 
 // Parse body
 app.use(express.urlencoded({ extended: false }));
