@@ -9,8 +9,6 @@
 // - Responsive cards
 // - Responsive layout
 // - Menu icons
-// - Edit form
-// - Add form
 // - Login
 // - Register
 // - Navbar login
@@ -40,8 +38,8 @@ $(() => {
   createNavbar(views, 'navbar');
   createMenu(views, 'menu');
   createBrowsePasswords(views, 'browse');
-  createEditPassword(views, 'edit');
-  createAddPassword(views, 'add');
+  createForm(views, 'edit', 'Edit a password');
+  createForm(views, 'add', 'Create a new password');
   views.setView('browse');
   views.setView('edit');
 });
