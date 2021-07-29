@@ -18,23 +18,32 @@ const createNavbar = (views, id) => {
       this.views.append(id);
 
       $nav.append(
-        $(`
-<div class="logo">
-  <i class="fas fa-lock"></i>
-  <div>PassKeepR</div>
-</div>
-<div class="search">
-  <i class="fas fa-search"></i>
-  <input type="text" placeholder="Search passwords">
-</div>
-<div class="user">
-  <div>rfripp</div>
-  <button class="logout" type="button">
-    <i class="fas fa-sign-out-alt"></i>
-  </button>
-</div>
-      `)
+        $(`<div class="logo">
+            <i class="fas fa-lock"></i>
+            <div>PassKeepR</div>
+          </div>
+            <form class="search">
+              <i class="fas fa-search"></i>
+              <input type="text" name="val" placeholder="Search passwords">
+            </form>
+          <div class="user">
+            <div>rfripp</div>
+            <button class="logout" type="button">
+              <i class="fas fa-sign-out-alt"></i>
+            </button>
+          </div>`)
       );
+
+      // Set search listener
+      const $input = $nav.find('input');
+      $nav.find('.search').on('submit', (event) => {
+        event.preventDefault();
+        const query = '?type=search&' + $('.search').serialize();
+        this.views.setView('browse');
+        this.views.browse.query = query;
+        this.views.browse.update();
+        $input.val('').blur();
+      });
 
       return this;
     },

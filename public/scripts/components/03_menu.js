@@ -66,7 +66,7 @@ const createMenu = (views, id) => {
           const $button = $btnIconText(cls, '', org_name);
           $button
             .appendTo(this.component)
-            .on('click', this.setFilter(cls, `?type=org&id=${org_id}`));
+            .on('click', this.setFilter(cls, `?type=org&val=${org_id}`));
         });
 
         this.component.append($($('<div class="hr">')));
@@ -77,7 +77,7 @@ const createMenu = (views, id) => {
           const $button = $btnIconText(cls, '', category);
           $button
             .appendTo(this.component)
-            .on('click', this.setFilter(cls, `?type=cat&id=${cat_id}`));
+            .on('click', this.setFilter(cls, `?type=cat&val=${cat_id}`));
         });
       });
 

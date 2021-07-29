@@ -4,7 +4,6 @@
 
 //------------------------------------------------------------------------------
 // Todo:
-// - Search function
 // - Logo API
 // - Responsive cards
 // - Responsive layout
