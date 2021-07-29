@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// Create menu component to filter the list of passwords
+// Create the menu component to filter the list of passwords
 //------------------------------------------------------------------------------
 
 const createMenu = (views, id) => {

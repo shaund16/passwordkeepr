@@ -12,8 +12,6 @@ $col-xlight: #e0e0e0;
 $col-white: #ffffff;
 $col-highlight: #ffd523;
 
-$font-stack: 'Rajdhani', sans-serif;
-
 //------------------------------------------------------------------------------
 // Fonts
 
@@ -32,6 +30,8 @@ $font-stack: 'Rajdhani', sans-serif;
 
 @mixin button($highlight) {
   border: none;
+  outline: none;
+  padding: 0;
   color: $col-dark;
   background-color: $col-light;
 

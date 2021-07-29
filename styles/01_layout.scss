@@ -49,7 +49,11 @@ div {
     grid-row: 2;
   }
 
-  #content {
+  #browse,
+  #edit,
+  #add {
+    background-color: base.$col-dark;
+    padding: 20px;
     grid-column: 2;
     grid-row: 2;
   }

@@ -5,8 +5,6 @@
 @use 'base';
 
 #browse {
-  background-color: base.$col-dark;
-  padding: 20px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -15,7 +13,7 @@
   .password {
     color: base.$col-dark;
     background-color: base.$col-light;
-    @include base.font-main(18px);
+    font-size: 18px;
     @include base.b-shadow(0.9);
 
     display: grid;
@@ -64,7 +62,7 @@
     .buttons {
       grid-column: 1 / 4;
       grid-row: 3;
-      border-top: 1px solid black;
+      border-top: 1px solid base.$col-dark;
 
       display: flex;
       flex-direction: row;

@@ -16,9 +16,9 @@
   white-space: nowrap;
 
   button {
+    @include base.button(base.$col-dark);
     padding: 6px 0;
     text-align: left;
-    @include base.button(base.$col-dark);
 
     .fas {
       width: 40px;

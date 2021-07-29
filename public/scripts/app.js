@@ -2,6 +2,20 @@
 // Main client side script
 //------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
+// Todo:
+// - Search function
+// - Logo API
+// - Responsive cards
+// - Responsive layout
+// - Menu icons
+// - Edit form
+// - Add form
+// - Login
+// - Register
+// - Navbar login
+// - Pwd cards: Buttons inactive if not owner
+
 const createViews = (parent) => ({
   parent,
   current: null,
@@ -26,7 +40,8 @@ $(() => {
   createNavbar(views, 'navbar');
   createMenu(views, 'menu');
   createBrowsePasswords(views, 'browse');
-  // createEditPassword(views, 'edit');
-  // createAddPassword(views, 'add');
-  // views.setView('browse');
+  createEditPassword(views, 'edit');
+  createAddPassword(views, 'add');
+  views.setView('browse');
+  views.setView('edit');
 });

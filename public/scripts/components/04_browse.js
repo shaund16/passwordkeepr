@@ -1,6 +1,9 @@
 //------------------------------------------------------------------------------
-// Create component for a single password
+// Create the browse passwords component
 //------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// Create a component for a single password
 
 const createPasswordCard = (password, views) => {
   const $article = $('<article class="password">')
@@ -46,8 +49,45 @@ const createPasswordCard = (password, views) => {
     });
   });
 
-  //----------------------------------------------------------------------------
-  // Return component
-
   return $article;
+};
+
+//------------------------------------------------------------------------------
+// Create a component to browse all passwords
+
+const createBrowsePasswords = (views, id) => {
+  const view = {
+    component: null,
+    query: '',
+    id,
+    views,
+
+    //--------------------------------------------------------------------------
+    // Initialize
+
+    init: function () {
+      this.component = $(`<section>`).attr('id', id);
+      this.update();
+
+      this.views[this.id] = this;
+      this.views.append(id);
+
+      return this;
+    },
+
+    //--------------------------------------------------------------------------
+    // Update
+
+    update: function () {
+      $.get(`/api/passwords${this.query}`).then(({ passwords }) => {
+        this.component.empty();
+        passwords.forEach((pwd) =>
+          this.component.append(createPasswordCard(pwd, this.views))
+        );
+      });
+      return this;
+    },
+  };
+
+  view.init();
 };

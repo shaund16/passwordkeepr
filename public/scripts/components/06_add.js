@@ -25,7 +25,7 @@ const createAddPassword = (views, id) => {
       const $add = $(`<section>`).attr('id', id);
       this.component = $add;
       this.views[this.id] = this;
-      this.views.append(id);
+      // this.views.append(id);
 
       const $modal = $('<div class="modal">').appendTo($add);
       const $form = $('<form id="add-form">').appendTo($modal);
@@ -108,10 +108,10 @@ const createAddPassword = (views, id) => {
         });
 
         // Set length listener
-        $form.find('.length').on('change', setGenLength(this));
+        // $form.find('.length').on('change', setGenLength(this));
 
         // Set toggle listeners
-        $form.find('.toggle').on('click', setGenOptions(this));
+        // $form.find('.toggle').on('click', setGenOptions(this));
 
         // Set generate listener
         $form.find('.gen').on('click', () => {
