@@ -26,6 +26,15 @@ $col-highlight: #ffd523;
 }
 
 //------------------------------------------------------------------------------
+// Positioning
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//------------------------------------------------------------------------------
 // Buttons
 
 @mixin button($highlight) {

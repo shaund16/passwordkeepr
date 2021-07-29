@@ -4,7 +4,6 @@
 
 //------------------------------------------------------------------------------
 // Todo:
-// - Logo API
 // - Responsive cards
 // - Responsive layout
 // - Menu icons

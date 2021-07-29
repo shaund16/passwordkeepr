@@ -42,9 +42,22 @@ const createBrowsePasswords = (views, id) => {
     // Create a component for a single password
 
     createPasswordCard: function (password, user_id) {
+      // Get logo from clearbit API
+      const query = `https://logo.clearbit.com/${password.site_url}?size=65&`;
+      const $logo = $('<div class="logo">');
+      const $img = $('<img>').attr('src', query).appendTo($logo);
+
+      // Display initial if logo not found
+      $img.on('error', () => {
+        $img.detach();
+        const initial = password.site_name[0].toUpperCase();
+        $('<div class="def-img">').text(initial).appendTo($logo);
+      });
+
+      // Assemble component
       const $article = $('<article class="password">')
         .append(
-          $('<div class="logo"><img></div>'),
+          $logo,
           $('<div class="site_name">').text(password.site_name),
           $('<div class="site_login">').text(password.site_login),
           $btnIcon('go-to', 'external-link-alt'),
@@ -57,6 +70,7 @@ const createBrowsePasswords = (views, id) => {
         )
         .addClass('password');
 
+      // Disable edit and delete if user not owner
       if (password.creator_id !== user_id) {
         $article
           .find('.edit, .delete')
