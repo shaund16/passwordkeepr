@@ -23,7 +23,8 @@ module.exports = (db) => {
   router.get('/', (req, res) => {
     const { type, id } = req.query;
     let filterString = '';
-    const params = [req.session.user_id];
+    const user_id = req.session.user_id;
+    const params = [user_id];
 
     // Filter if necessary
     switch (type) {
@@ -53,7 +54,7 @@ module.exports = (db) => {
       ORDER BY org_name, site_name;`,
       params
     )
-      .then(({ rows: passwords }) => res.json({ passwords }))
+      .then(({ rows: passwords }) => res.json({ passwords, user_id }))
       .catch(queryFailed(req, res));
   });
 

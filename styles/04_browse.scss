@@ -72,6 +72,11 @@
       button {
         flex: 1;
         @include base.button(base.$col-highlight);
+
+        &.not-own {
+          color: scale-color(base.$col-light, $lightness: -25%);
+          background-color: base.$col-light;
+        }
       }
     }
   }

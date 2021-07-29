@@ -12,7 +12,10 @@
 // - Login
 // - Register
 // - Navbar login
-// - Pwd cards: Buttons inactive if not owner
+// - Validate forms
+
+//------------------------------------------------------------------------------
+// Manage views for SPA
 
 const createViews = (parent) => ({
   parent,
@@ -33,6 +36,9 @@ const createViews = (parent) => ({
   },
 });
 
+//------------------------------------------------------------------------------
+// Create jQuery components when document is ready
+
 $(() => {
   const views = createViews($('#body'));
   createNavbar(views, 'navbar');
@@ -41,5 +47,4 @@ $(() => {
   createForm(views, 'edit', 'Edit a password');
   createForm(views, 'add', 'Create a new password');
   views.setView('browse');
-  views.setView('edit');
 });

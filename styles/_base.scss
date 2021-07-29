@@ -38,7 +38,7 @@ $col-highlight: #ffd523;
   &:hover {
     cursor: pointer;
     color: $highlight;
-    background-color: scale-color($col-light, $lightness: -20%);
+    background-color: scale-color($col-light, $lightness: -15%);
   }
 }
 

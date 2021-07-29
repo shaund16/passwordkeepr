@@ -6,8 +6,8 @@ const createForm = (views, id, title) => {
   const view = {
     component: null,
     genOptions: new Set(['lower', 'upper', 'digits']),
-    genLength: 16,
-    genLengthMin: 16,
+    genLength: 12,
+    genLengthMin: 12,
     pwd_id: -1,
     id,
     views,
@@ -79,7 +79,7 @@ const createForm = (views, id, title) => {
       $.get(this.updateUrl()).then(({ orgs, categories, passwords }) => {
         // Dynamic field: Categories
         const $categories = $select(
-          'Category:',
+          'Category',
           `${this.id}-category-id`,
           'category_id',
           categories,
@@ -89,7 +89,7 @@ const createForm = (views, id, title) => {
 
         // Dynamic field: Organizations
         const $orgs = $select(
-          'Organization:',
+          'Organization',
           `${this.id}-org-id`,
           'org_id',
           orgs,
@@ -97,17 +97,22 @@ const createForm = (views, id, title) => {
           'org_name'
         );
 
+        // Toggle buttons for generation options
+        const $toggles = $('<div class="toggles">').append(
+          $button('lower', 'a'),
+          $button('upper', 'A'),
+          $button('digits', '1'),
+          $button('symbols', '#'),
+          $button('punct', '?'),
+          $button('brackets', '()')
+        );
+
         // Password generation buttons
         const $genButtons = $('<div class="gen">').append(
           $btnIcon('gen-pwd', 'angle-double-right'),
-          $('<div class="vr">'),
-          $button('lower toggle', 'a'),
-          $button('upper toggle', 'A'),
-          $button('digits toggle', '1'),
-          $button('symbols toggle', '#'),
-          $button('punct toggle', '?'),
-          $button('brackets toggle', '()'),
-          $('<div class="vr">'),
+          $('<div>'),
+          $toggles,
+          $('<div>'),
           $numberPicker('length', this.genLengthMin)
         );
 
@@ -118,11 +123,12 @@ const createForm = (views, id, title) => {
           $button('cancel', 'Cancel')
         );
 
-        // Append
-        const password = passwords ? passwords[0] : {};
+        // Append all components
+        const password = passwords ? passwords[0] : {}; // Edit vs add
         const $form = this.component.find('form');
         $form.empty();
         $form.append(
+          $(`<div class="title">${title}</div>`),
           $input('Site name', `${this.id}-name`, 'site_name', 'text', password),
           $input('Site URL', `${this.id}-url`, 'site_url', 'text', password),
           $input('Login', `${this.id}-login`, 'site_login', 'text', password),
