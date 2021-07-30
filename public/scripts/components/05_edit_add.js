@@ -27,8 +27,8 @@ const createForm = (views, id, title) => {
 
     updateUrl: function () {
       return this.id === 'edit'
-        ? `/api/users/filters?id=${this.pwd_id}`
-        : '/api/users/filters';
+        ? `/api/users/myinfo?id=${this.pwd_id}`
+        : '/api/users/myinfo';
     },
 
     //--------------------------------------------------------------------------
@@ -67,8 +67,6 @@ const createForm = (views, id, title) => {
           this.views.setView('browse');
         });
       });
-
-      return this;
     },
 
     //--------------------------------------------------------------------------
@@ -170,8 +168,6 @@ const createForm = (views, id, title) => {
           this.views.setView('browse');
         });
       });
-
-      return this;
     },
 
     //--------------------------------------------------------------------------

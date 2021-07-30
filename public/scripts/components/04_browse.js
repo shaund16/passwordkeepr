@@ -21,8 +21,6 @@ const createBrowsePasswords = (views, id) => {
 
       this.views[this.id] = this;
       this.views.append(id);
-
-      return this;
     },
 
     //--------------------------------------------------------------------------
@@ -35,7 +33,6 @@ const createBrowsePasswords = (views, id) => {
           this.component.append(this.createPasswordCard(pwd, Number(user_id)))
         );
       });
-      return this;
     },
 
     //----------------------------------------------------------------------------
