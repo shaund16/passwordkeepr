@@ -21,9 +21,10 @@ module.exports = (db) => {
   // GET /api/passwords => Browse
 
   router.get('/', (req, res) => {
-    const { type, id } = req.query;
+    const { type, val } = req.query;
     let filterString = '';
-    const params = [req.session.user_id];
+    const user_id = req.session.user_id;
+    const params = [user_id];
 
     // Filter if necessary
     switch (type) {
@@ -32,18 +33,22 @@ module.exports = (db) => {
         break;
       case 'org':
         filterString = 'AND orgs.id = $2';
-        params.push(id);
+        params.push(val);
         break;
       case 'cat':
         filterString = 'AND category_id = $2';
-        params.push(id);
+        params.push(val);
+        break;
+      case 'search':
+        filterString = 'AND (site_name LIKE $2 OR site_url LIKE $2)';
+        params.push(`%${val}%`);
         break;
       default:
     }
 
     // List of passwords
     db.query(
-      `SELECT passwords.*, org_name, category
+      `SELECT passwords.*, org_name, cat_name
       FROM users
       JOIN orgs_users ON users.id = orgs_users.user_id
       JOIN orgs ON orgs.id = orgs_users.org_id
@@ -53,7 +58,7 @@ module.exports = (db) => {
       ORDER BY org_name, site_name;`,
       params
     )
-      .then(({ rows: passwords }) => res.json({ passwords }))
+      .then(({ rows: passwords }) => res.json({ passwords, user_id }))
       .catch(queryFailed(req, res));
   });
 

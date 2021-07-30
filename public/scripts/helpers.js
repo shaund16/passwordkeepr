@@ -13,14 +13,13 @@ const urlQuery = (obj) => {
 //------------------------------------------------------------------------------
 // Create label and input element
 
-const $input = (label, id, name, type, obj) => [
-  $(`<label for="${id}">${label}</label>`),
-  $('<br />'),
-  $(`<input id="${id}" name="${name}" type="${type}">`).val(
-    obj && obj[name] ? obj[name] : ''
-  ),
-  $('<br />'),
-];
+const $input = (label, id, name, type, obj) => {
+  const $label = $(`<label for="${id}">${label}</label>`);
+  const value = obj && obj[name] ? `value="${obj[name]}"` : '';
+  const $input = $(`<input id="${id}" name="${name}" type="${type}" ${value}>`);
+  const $div = $('<div class="input">').append($input);
+  return [$label, $div];
+};
 
 //------------------------------------------------------------------------------
 // Create select element
@@ -32,20 +31,21 @@ $select = (label, id, name, array, arr_id, arr_val) => {
     const $option = $('<option>').attr('value', id).text(value);
     $select.append($option);
   });
-  return [$label, $('<br />'), $select, $('<br />')];
+  const $div = $('<div class="select">').append($select);
+  return [$label, $div];
 };
 
 //------------------------------------------------------------------------------
 // Create button element
 
-const $button = (cls, type, text) =>
+const $button = (cls, text, type = 'button') =>
   $('<button>').addClass(cls).attr('type', type).text(text);
 
 //------------------------------------------------------------------------------
 // Create button element with icon
 
 const $btnIcon = (cls, icon, type = 'button') => {
-  const $button = $('<button>').attr('type', type).addClass(cls);
+  const $button = $('<button>').addClass(cls).attr('type', type);
   $button.append($('<i>').addClass(`fas fa-${icon}`));
   return $button;
 };
@@ -57,6 +57,17 @@ const $btnIconText = (cls, icon, text, type = 'button') =>
   $(`<button class="${cls}" type="${type}">
     <i class="fas fa-${icon}"></i><div>${text}</div>
   </button>`);
+
+//------------------------------------------------------------------------------
+// Create a number picker component
+
+const $numberPicker = (cls, value) => {
+  return $(`<div class="${cls}">`).append(
+    $btnIcon('decrease', 'caret-left'),
+    $(`<div class="value">${value}</div>`),
+    $btnIcon('increase', 'caret-right')
+  );
+};
 
 //------------------------------------------------------------------------------
 // Generate random password
@@ -80,30 +91,3 @@ const genPassword = (length, options) => {
 
   return pwd;
 };
-
-//------------------------------------------------------------------------------
-// Set the generated password length
-
-const setGenLength = (view) =>
-  function () {
-    const length = Math.max(10, $(this).val());
-    $(this).val(length);
-    view.genLength = length;
-  };
-
-//------------------------------------------------------------------------------
-// Set the generated password options
-
-const setGenOptions = (view) =>
-  function () {
-    const $this = $(this);
-    const type = $this.attr('class').split(' ')[0];
-    if ($this.hasClass('on')) {
-      if (view.genOptions.size === 1) return;
-      view.genOptions.delete(type);
-      $this.removeClass('on');
-      return;
-    }
-    view.genOptions.add(type);
-    $this.addClass('on');
-  };

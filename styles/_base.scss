@@ -12,7 +12,9 @@ $col-xlight: #e0e0e0;
 $col-white: #ffffff;
 $col-highlight: #ffd523;
 
-$font-stack: 'Rajdhani', sans-serif;
+@mixin bg-shade($lightn) {
+  background-color: scale-color($col-light, $lightness: $lightn);
+}
 
 //------------------------------------------------------------------------------
 // Fonts
@@ -28,17 +30,28 @@ $font-stack: 'Rajdhani', sans-serif;
 }
 
 //------------------------------------------------------------------------------
+// Positioning
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//------------------------------------------------------------------------------
 // Buttons
 
 @mixin button($highlight) {
   border: none;
+  outline: none;
+  padding: 0;
   color: $col-dark;
   background-color: $col-light;
 
   &:hover {
     cursor: pointer;
     color: $highlight;
-    background-color: scale-color($col-light, $lightness: -20%);
+    background-color: scale-color($col-light, $lightness: -15%);
   }
 }
 

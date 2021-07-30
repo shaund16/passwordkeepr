@@ -2,6 +2,16 @@
 // Main client side script
 //------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
+// Todo:
+// - Responsive layout
+// - Login / Register
+// - Navbar login
+// - Validate forms
+
+//------------------------------------------------------------------------------
+// Manage views for SPA
+
 const createViews = (parent) => ({
   parent,
   current: null,
@@ -21,12 +31,15 @@ const createViews = (parent) => ({
   },
 });
 
+//------------------------------------------------------------------------------
+// Create jQuery components when document is ready
+
 $(() => {
   const views = createViews($('#body'));
   createNavbar(views, 'navbar');
   createMenu(views, 'menu');
   createBrowsePasswords(views, 'browse');
-  // createEditPassword(views, 'edit');
-  // createAddPassword(views, 'add');
-  // views.setView('browse');
+  createForm(views, 'edit', 'Edit a password');
+  createForm(views, 'add', 'Create a new password');
+  views.setView('browse');
 });

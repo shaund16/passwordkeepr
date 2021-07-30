@@ -25,7 +25,8 @@ module.exports = (db) => {
     const { id } = req.query;
 
     // Query list of organisations
-    const queryOrgs = `SELECT DISTINCT orgs.id AS org_id, org_name
+    const queryOrgs = `
+      SELECT DISTINCT orgs.id AS org_id, org_name, org_icon
       FROM users
       JOIN orgs_users ON users.id = orgs_users.user_id
       JOIN orgs ON orgs.id = orgs_users.org_id
@@ -33,14 +34,15 @@ module.exports = (db) => {
       ORDER BY org_name;`;
 
     // Query list of categories
-    const queryCategories = `SELECT DISTINCT categories.id AS cat_id, category
+    const queryCategories = `
+      SELECT DISTINCT categories.id AS cat_id, cat_name, cat_icon
       FROM users
       JOIN orgs_users ON users.id = orgs_users.user_id
       JOIN orgs ON orgs.id = orgs_users.org_id
       JOIN passwords ON orgs.id = passwords.org_id
       JOIN categories ON categories.id = passwords.category_id
       WHERE users.id = $1
-      ORDER BY category;`;
+      ORDER BY cat_name;`;
 
     if (id) {
       // Get organisations, categories and password

@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// menu.scss
+// Menu
 //------------------------------------------------------------------------------
 
 @use 'base';
@@ -16,17 +16,22 @@
   white-space: nowrap;
 
   button {
+    @include base.button(base.$col-dark);
     padding: 6px 0;
     text-align: left;
-    @include base.button(base.$col-dark);
 
     .fas {
-      width: 40px;
+      width: 50px;
       text-align: center;
     }
 
     div {
       padding: 0 20px 0 5px;
+    }
+
+    &.active {
+      color: base.$col-highlight;
+      @include base.bg-shade(-15%);
     }
   }
 
