@@ -14,7 +14,7 @@ const {
   queryTokens,
   queryFieldValuePairs,
   queryParams,
-} = require('../bin/helpers');
+} = require('./helpers');
 
 module.exports = (db) => {
   //----------------------------------------------------------------------------

@@ -32,7 +32,7 @@ const createNavbar = (views, id) => {
       this.update();
 
       // Set search listener
-      const $input = $nav.find('input');
+      const $search = $nav.find('input');
       $nav.find('.search').on('submit', (event) => {
         event.preventDefault();
         const query = '?type=search&' + $('.search').serialize();
@@ -40,7 +40,7 @@ const createNavbar = (views, id) => {
         this.views.browse.query = query;
         this.views.menu.setActive('search');
         this.views.browse.update();
-        $input.val('').blur();
+        $search.val('').blur();
       });
     },
 

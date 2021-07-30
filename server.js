@@ -32,17 +32,6 @@ app.set('view engine', 'ejs');
 const morgan = require('morgan');
 app.use(morgan('dev'));
 
-// Pre-process CSS
-// const sass = require('node-sass-middleware');
-// const sassOptions = {
-//   src: __dirname + '/styles',
-//   dest: __dirname + '/public/styles',
-//   debug: true,
-//   outputStyle: 'expanded',
-//   indentedSyntax: true,
-// };
-// app.use('/styles', sass(sassOptions));
-
 // Parse body
 app.use(express.urlencoded({ extended: false }));
 
@@ -50,7 +39,7 @@ app.use(express.urlencoded({ extended: false }));
 const cookieSession = require('cookie-session');
 app.use(cookieSession({ name: 'session', keys: ['noema', 'noesis', 'sator'] }));
 
-// Serve static files: Including home page
+// Serve static files
 app.use(express.static('public'));
 
 //------------------------------------------------------------------------------

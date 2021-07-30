@@ -13,7 +13,7 @@ const createMenu = (views, id) => {
     // Set the active menu button
 
     setActive: function (cls) {
-      // Clear current active
+      // Clear current active button
       this.component.find(`.${this.active}`).removeClass('active');
 
       // Update active
@@ -22,7 +22,7 @@ const createMenu = (views, id) => {
       // Return if searching
       if (this.active === 'search') return;
 
-      // Set back to no filter if necessary
+      // Set to no filter if button gone (from delete password)
       let $new = this.component.find(`.${this.active}`);
       if ($new.length === 0) {
         this.active = 'all-pwd';
@@ -30,7 +30,7 @@ const createMenu = (views, id) => {
         $new = this.component.find('.all-pwd');
       }
 
-      // Set new active filter
+      // Set new active button
       this.component.find(`.${this.active}`).addClass('active');
     },
 
@@ -70,13 +70,14 @@ const createMenu = (views, id) => {
           this.setFilter('');
         });
 
-        // Filter own passwords
+        // Only passwords owned by user
         const $own = $btnIconText('own-pwd', 'user', 'Own passwords');
         $own.on('click', () => {
           this.setActive('own-pwd');
           this.setFilter('?type=own');
         });
 
+        // Assemble static part of component
         this.component
           .empty()
           .append(
@@ -87,7 +88,7 @@ const createMenu = (views, id) => {
             $('<div class="hr">')
           );
 
-        // Filter passwords by organization
+        // Append buttons to filter by organization
         orgs.forEach(({ org_id, org_name, org_icon }) => {
           const cls = `org-${org_id}`;
           const $button = $btnIconText(cls, org_icon, org_name);
@@ -99,7 +100,7 @@ const createMenu = (views, id) => {
 
         this.component.append($($('<div class="hr">')));
 
-        // Filter passwords by category
+        // Append buttons to filter by category
         categories.forEach(({ cat_id, cat_name, cat_icon }) => {
           const cls = `cat-${cat_id}`;
           const $button = $btnIconText(cls, cat_icon, cat_name);
@@ -109,7 +110,7 @@ const createMenu = (views, id) => {
           });
         });
 
-        // Reset active button
+        // Set active button and update browse
         this.setActive();
         this.views.browse.update();
       });

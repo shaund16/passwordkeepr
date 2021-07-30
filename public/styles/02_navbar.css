@@ -1,0 +1,71 @@
+#navbar {
+  background-color: #595260;
+  padding: 0 12px 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+  z-index: 10;
+}
+#navbar .logo i {
+  color: #ffd523;
+  padding-right: 0.5em;
+}
+#navbar .logo div {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 28px;
+}
+#navbar .search {
+  padding: 0 3em;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+#navbar .search .fas {
+  position: absolute;
+  width: 40px;
+  text-align: center;
+  pointer-events: none;
+}
+#navbar .search input {
+  font-size: 20px;
+  flex-grow: 1;
+  padding: 0.2em 0.5em 0.2em 40px;
+  outline: none;
+  border: 1px solid #595260;
+  background-color: #e0e0e0;
+}
+#navbar .search input:hover {
+  border-color: #2c2e43;
+  background-color: #ffffff;
+}
+#navbar .search input:focus {
+  color: #2c2e43;
+  background-color: #ffffff;
+}
+#navbar .user button {
+  border: none;
+  width: 2em;
+  height: 2em;
+  border: none;
+  outline: none;
+  padding: 0;
+  color: #2c2e43;
+  background-color: #b2b1b9;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0);
+  transition: text-shadow 0.4s ease-in-out;
+  color: #b2b1b9;
+  background-color: #595260;
+}
+#navbar .user button:hover {
+  cursor: pointer;
+  color: #ffd523;
+  background-color: #96949f;
+}
+#navbar .user button:hover {
+  text-shadow: -4px 4px 10px rgba(0, 0, 0, 0.9);
+}
+#navbar .user button:hover {
+  background-color: #595260;
+}

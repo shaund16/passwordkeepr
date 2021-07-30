@@ -67,7 +67,7 @@ const createBrowsePasswords = (views, id) => {
         )
         .addClass('password');
 
-      // Disable edit and delete if user not owner
+      // Disable edit and delete if user not the owner
       if (password.creator_id !== user_id) {
         $article
           .find('.edit, .delete')

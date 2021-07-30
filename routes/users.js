@@ -8,13 +8,7 @@ const router = express.Router();
 //------------------------------------------------------------------------------
 // Helpers
 
-const {
-  queryFailed,
-  queryFields,
-  queryTokens,
-  queryFieldValuePairs,
-  queryParams,
-} = require('../bin/helpers');
+const { queryFailed } = require('./helpers');
 
 module.exports = (db) => {
   //----------------------------------------------------------------------------
