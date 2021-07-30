@@ -6,14 +6,14 @@ const createForm = (views, id, title) => {
   const view = {
     component: null,
     genOptions: new Set(['lower', 'upper', 'digits']),
-    genLength: 12,
-    genLengthMin: 12,
+    genLength: 10,
+    genLengthMin: 10,
     pwd_id: -1,
     id,
     views,
 
     //--------------------------------------------------------------------------
-    // Toggle methods and url for editing or adding
+    // Choose AJAX method and url depending on the form type: edit or add
 
     submitMethod: function () {
       return this.id === 'edit' ? 'PUT' : 'POST';
@@ -32,11 +32,23 @@ const createForm = (views, id, title) => {
     },
 
     //--------------------------------------------------------------------------
-    // Clear
+    // Clear input fields
 
     clear: function () {
       this.component.find('input').val('');
       return this;
+    },
+
+    //--------------------------------------------------------------------------
+    // Activate or deactivate the decrease button
+
+    setDecreaseState: function () {
+      const $decrease = this.component.find('.decrease');
+      if (this.genLength === this.genLengthMin) {
+        $decrease.attr('disabled', 'disabled').addClass('inactive');
+      } else {
+        $decrease.removeAttr('disabled').removeClass('inactive');
+      }
     },
 
     //--------------------------------------------------------------------------
@@ -76,9 +88,10 @@ const createForm = (views, id, title) => {
       // Ajax
       $.get(this.updateUrl()).then(({ orgs, categories, passwords }) => {
         // Dynamic field: Categories
+        const id = this.id;
         const $categories = $select(
           'Category',
-          `${this.id}-category-id`,
+          `${id}-category-id`,
           'category_id',
           categories,
           'cat_id',
@@ -88,14 +101,14 @@ const createForm = (views, id, title) => {
         // Dynamic field: Organizations
         const $orgs = $select(
           'Organization',
-          `${this.id}-org-id`,
+          `${id}-org-id`,
           'org_id',
           orgs,
           'org_id',
           'org_name'
         );
 
-        // Toggle buttons for generation options
+        // Toggle buttons to set options for generating password
         const $toggles = $('<div class="toggles">').append(
           $button('lower', 'a'),
           $button('upper', 'A'),
@@ -127,18 +140,21 @@ const createForm = (views, id, title) => {
         $form.empty();
         $form.append(
           $(`<div class="title">${title}</div>`),
-          $input('Site name', `${this.id}-name`, 'site_name', 'text', password),
-          $input('Site URL', `${this.id}-url`, 'site_url', 'text', password),
-          $input('Login', `${this.id}-login`, 'site_login', 'text', password),
+          $input('Site name', `${id}-name`, 'site_name', 'text', password),
+          $input('Site URL', `${id}-url`, 'site_url', 'url', password),
+          $input('Login', `${id}-login`, 'site_login', 'text', password),
           $orgs,
           $categories,
-          $input('Password', `${this.id}-pwd`, 'site_pwd', 'text', password),
+          $input('Password', `${id}-pwd`, 'site_pwd', 'text', password),
           $('<div class="label">Generate</div>'),
           $genButtons,
           $actionButtons
         );
 
-        // Toggle generate options
+        // Set decrease button state
+        this.setDecreaseState();
+
+        // Set toggle buttons state
         [...this.genOptions].forEach((option) => {
           $form.find(`.${option}`).addClass('on');
         });
@@ -158,7 +174,7 @@ const createForm = (views, id, title) => {
         // Set generate listener
         $form.find('.gen-pwd').on('click', () => {
           $form
-            .find(`#${this.id}-pwd`)
+            .find(`#${id}-pwd`)
             .val(genPassword(this.genLength, this.genOptions));
         });
 
@@ -176,6 +192,7 @@ const createForm = (views, id, title) => {
     changeGenLength: function (n) {
       this.genLength = Math.max(this.genLength + n, this.genLengthMin);
       this.component.find('.length .value').text(this.genLength);
+      this.setDecreaseState();
     },
 
     //--------------------------------------------------------------------------

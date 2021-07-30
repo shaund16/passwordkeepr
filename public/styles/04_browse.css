@@ -1,0 +1,79 @@
+#browse {
+  display: grid;
+  align-content: flex-start;
+}
+#browse .password {
+  background-color: #b2b1b9;
+  font-size: 18px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 37.5px 37.5px 35px;
+}
+#browse .password .logo {
+  grid-column: 1;
+  grid-row: 1/3;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#browse .password .logo img {
+  width: 65px;
+  height: 65px;
+}
+#browse .password .logo .def-img {
+  color: teal;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 65px;
+}
+#browse .password .site_name {
+  grid-column: 2/4;
+  grid-row: 1;
+  padding: 5px 0 0 5px;
+}
+#browse .password .site_login {
+  grid-column: 2/4;
+  grid-row: 2;
+  padding: 0 0 0 5px;
+}
+#browse .password .go-to {
+  grid-column: 4;
+  grid-row: 1/3;
+  font-size: 26px;
+  border: none;
+  outline: none;
+  padding: 0;
+  color: #2c2e43;
+  background-color: #b2b1b9;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0);
+  transition: text-shadow 0.4s ease-in-out;
+}
+#browse .password .go-to:hover {
+  cursor: pointer;
+  color: #ffd523;
+  background-color: #96949f;
+}
+#browse .password .go-to:hover {
+  text-shadow: -4px 4px 10px rgba(0, 0, 0, 0.9);
+}
+#browse .password .go-to:hover {
+  background-color: #b2b1b9;
+}
+#browse .password .buttons {
+  border: none;
+  outline: none;
+  padding: 0;
+  color: #2c2e43;
+  background-color: #b2b1b9;
+  border-top: 1px solid #2c2e43;
+}
+#browse .password .buttons:hover {
+  cursor: pointer;
+  color: #ffd523;
+  background-color: #96949f;
+}
+#browse .password .buttons.inactive {
+  color: #83818e;
+  background-color: #b2b1b9;
+}

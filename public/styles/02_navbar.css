@@ -1,0 +1,118 @@
+#navbar {
+  color: #b2b1b9;
+  background-color: #595260;
+  padding: 0 20px;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+  display: grid;
+}
+@media only screen {
+  #navbar {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 45px 60px;
+  }
+  #navbar .middle {
+    grid-column: 1/3;
+    grid-row: 2;
+  }
+  #navbar .menu-button {
+    display: none;
+  }
+}
+@media only screen and (max-width: 560px) {
+  #navbar .menu-button {
+    display: block;
+  }
+}
+@media only screen and (min-width: 880px) {
+  #navbar {
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 60px;
+    gap: 5%;
+  }
+  #navbar .middle {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+#navbar .logo {
+  margin-top: 10px;
+}
+#navbar .logo i {
+  color: #ffd523;
+  padding-right: 20px;
+}
+#navbar .logo div {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 28px;
+}
+#navbar .middle {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+}
+#navbar .middle .menu-button {
+  padding-right: 20px;
+}
+#navbar .search {
+  position: relative;
+  align-self: center;
+  flex: 1;
+}
+#navbar .search .magnify {
+  width: 40px;
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  pointer-events: none;
+}
+#navbar .search input {
+  width: 100%;
+  font-size: 20px;
+  padding: 0.2em 0.5em 0.2em 40px;
+  outline: none;
+  border: 1px solid #595260;
+  background-color: #e0e0e0;
+}
+#navbar .search input:hover {
+  border-color: #2c2e43;
+  background-color: #ffffff;
+}
+#navbar .search input:focus {
+  color: #2c2e43;
+  background-color: #ffffff;
+}
+#navbar .user {
+  justify-self: end;
+  margin-top: 10px;
+}
+#navbar .user .logout-button {
+  padding-left: 20px;
+}
+#navbar .menu-button,
+#navbar .logout-button {
+  border: none;
+  outline: none;
+  padding: 0;
+  color: #2c2e43;
+  background-color: #b2b1b9;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0);
+  transition: text-shadow 0.4s ease-in-out;
+  color: #b2b1b9;
+  background-color: #595260;
+}
+#navbar .menu-button:hover,
+#navbar .logout-button:hover {
+  cursor: pointer;
+  color: #ffd523;
+  background-color: #96949f;
+}
+#navbar .menu-button:hover,
+#navbar .logout-button:hover {
+  text-shadow: -4px 4px 10px rgba(0, 0, 0, 0.9);
+}
+#navbar .menu-button:hover,
+#navbar .logout-button:hover {
+  background-color: #595260;
+}

@@ -2,29 +2,23 @@
 // helpers.js
 //------------------------------------------------------------------------------
 
-const urlQuery = (obj) => {
-  const pairs = [];
-  for (const prop in obj) {
-    pairs.push(`${prop}=${obj[prop]}`);
-  }
-  return pairs.length === 0 ? '' : `?${pairs.join('&')}`;
-};
-
 //------------------------------------------------------------------------------
-// Create label and input element
+// Create label and input combination
 
 const $input = (label, id, name, type, obj) => {
   const $label = $(`<label for="${id}">${label}</label>`);
   const value = obj && obj[name] ? `value="${obj[name]}"` : '';
-  const $input = $(`<input id="${id}" name="${name}" type="${type}" ${value}>`);
-  const $div = $('<div class="input">').append($input);
+  const $comp = $(
+    `<input id="${id}" name="${name}" type="${type}" ${value} required>`
+  );
+  const $div = $('<div class="input">').append($comp);
   return [$label, $div];
 };
 
 //------------------------------------------------------------------------------
-// Create select element
+// Create label and select combination
 
-$select = (label, id, name, array, arr_id, arr_val) => {
+const $select = (label, id, name, array, arr_id, arr_val) => {
   const $label = $('<label>').attr('for', id).text(label);
   const $select = $('<select>').attr('id', id).attr('name', name);
   array.forEach(({ [arr_id]: id, [arr_val]: value }) => {

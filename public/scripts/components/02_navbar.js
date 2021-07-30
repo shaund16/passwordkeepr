@@ -19,20 +19,23 @@ const createNavbar = (views, id) => {
 
       $nav.append(
         $(`<div class="logo">
-            <i class="fas fa-lock"></i>
-            <div>PassKeepR</div>
+            <i class="fas fa-lock"></i><div>PassKeepR</div>
           </div>
+          <div class="middle">
+            <i class="fas fa-bars menu-button"></i>
             <form class="search">
-              <i class="fas fa-search"></i>
+              <i class="fas fa-search magnify"></i>
               <input type="text" name="val" placeholder="Search passwords">
             </form>
-          <div class="user"></div>`)
+          </div>
+          <div class="user"></div>
+          `)
       );
 
       this.update();
 
       // Set search listener
-      const $input = $nav.find('input');
+      const $search = $nav.find('input');
       $nav.find('.search').on('submit', (event) => {
         event.preventDefault();
         const query = '?type=search&' + $('.search').serialize();
@@ -40,7 +43,7 @@ const createNavbar = (views, id) => {
         this.views.browse.query = query;
         this.views.menu.setActive('search');
         this.views.browse.update();
-        $input.val('').blur();
+        $search.val('').blur();
       });
     },
 
@@ -52,7 +55,7 @@ const createNavbar = (views, id) => {
         const $user = this.component.find('.user');
         $user.append(
           $(`<div>${user[0].name}</div>`),
-          $('<button class="logout" type="button">').append(
+          $('<button class="logout-button" type="button">').append(
             '<i class="fas fa-sign-out-alt">'
           )
         );
