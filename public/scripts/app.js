@@ -6,7 +6,6 @@
 // Todo:
 // - Responsive layout
 // - Login / Register
-// - Navbar login
 // - Validate forms
 
 //------------------------------------------------------------------------------

@@ -18,9 +18,19 @@ const {
 
 module.exports = (db) => {
   //----------------------------------------------------------------------------
-  // GET /api/users/filters => User information
+  // GET /api/users/me
 
-  router.get('/filters', (req, res) => {
+  router.get('/me', (req, res) => {
+    const user_id = req.session.user_id;
+    db.query(`SELECT name FROM users WHERE id = $1;`, [user_id])
+      .then(({ rows: user }) => res.json({ user }))
+      .catch(queryFailed(req, res));
+  });
+
+  //----------------------------------------------------------------------------
+  // GET /api/users/myinfo => User information
+
+  router.get('/myinfo', (req, res) => {
     const user_id = req.session.user_id;
     const { id } = req.query;
 

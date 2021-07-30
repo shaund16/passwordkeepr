@@ -26,13 +26,10 @@ const createNavbar = (views, id) => {
               <i class="fas fa-search"></i>
               <input type="text" name="val" placeholder="Search passwords">
             </form>
-          <div class="user">
-            <div>rfripp</div>
-            <button class="logout" type="button">
-              <i class="fas fa-sign-out-alt"></i>
-            </button>
-          </div>`)
+          <div class="user"></div>`)
       );
+
+      this.update();
 
       // Set search listener
       const $input = $nav.find('input');
@@ -45,15 +42,21 @@ const createNavbar = (views, id) => {
         this.views.browse.update();
         $input.val('').blur();
       });
-
-      return this;
     },
 
     //--------------------------------------------------------------------------
     // Update
 
     update: function () {
-      return this;
+      $.get('/api/users/me').then(({ user }) => {
+        const $user = this.component.find('.user');
+        $user.append(
+          $(`<div>${user[0].name}</div>`),
+          $('<button class="logout" type="button">').append(
+            '<i class="fas fa-sign-out-alt">'
+          )
+        );
+      });
     },
   };
 

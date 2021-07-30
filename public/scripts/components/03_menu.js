@@ -51,8 +51,6 @@ const createMenu = (views, id) => {
       this.views[this.id] = this;
       this.views.append(id);
       this.update();
-
-      return this;
     },
 
     //--------------------------------------------------------------------------
@@ -60,7 +58,7 @@ const createMenu = (views, id) => {
 
     update: function () {
       // Ajax
-      $.get('/api/users/filters').then(({ orgs, categories }) => {
+      $.get('/api/users/myinfo').then(({ orgs, categories }) => {
         // Standard buttons
         const $add = $btnIconText('add-pwd', 'plus', 'Add password');
         $add.on('click', () => this.views.setView('add'));
@@ -115,8 +113,6 @@ const createMenu = (views, id) => {
         this.setActive();
         this.views.browse.update();
       });
-
-      return this.component;
     },
   };
 
