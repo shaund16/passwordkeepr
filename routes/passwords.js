@@ -48,7 +48,7 @@ module.exports = (db) => {
 
     // List of passwords
     db.query(
-      `SELECT passwords.*, org_name, category
+      `SELECT passwords.*, org_name, cat_name
       FROM users
       JOIN orgs_users ON users.id = orgs_users.user_id
       JOIN orgs ON orgs.id = orgs_users.org_id

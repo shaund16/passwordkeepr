@@ -1,2 +1,7 @@
-INSERT INTO categories (id, category)
-VALUES (1, 'Media'), (2, 'Social'), (3, 'Work');
+INSERT INTO categories (id, cat_name, cat_icon)
+VALUES (1, 'Music', 'music'),
+(2, 'Video', 'film'),
+(3, 'Books', 'book'),
+(4, 'Social', 'users'),
+(5, 'Code', 'code'),
+(6, 'Shop', 'shopping-cart');
