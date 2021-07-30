@@ -58,12 +58,10 @@ const createBrowsePasswords = (views, id) => {
           $('<div class="site_name">').text(password.site_name),
           $('<div class="site_login">').text(password.site_login),
           $btnIcon('go-to', 'external-link-alt'),
-          $('<div class="buttons">').append(
-            $btnIcon('cp-login', 'user'),
-            $btnIcon('cp-pwd', 'key'),
-            $btnIcon('edit', 'edit'),
-            $btnIcon('delete', 'trash')
-          )
+          $btnIcon('buttons cp-login', 'user'),
+          $btnIcon('buttons cp-pwd', 'key'),
+          $btnIcon('buttons edit', 'edit'),
+          $btnIcon('buttons delete', 'trash')
         )
         .addClass('password');
 
@@ -72,7 +70,7 @@ const createBrowsePasswords = (views, id) => {
         $article
           .find('.edit, .delete')
           .attr('disabled', 'disabled')
-          .addClass('not-own');
+          .addClass('inactive');
       }
 
       //------------------------------------------------------------------------

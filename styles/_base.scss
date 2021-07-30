@@ -55,6 +55,13 @@ $col-highlight: #ffd523;
   }
 }
 
+@mixin inactive() {
+  &.inactive {
+    color: scale-color($col-light, $lightness: -25%);
+    background-color: $col-light;
+  }
+}
+
 //------------------------------------------------------------------------------
 // Shadows
 

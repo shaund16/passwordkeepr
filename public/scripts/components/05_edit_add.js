@@ -6,8 +6,8 @@ const createForm = (views, id, title) => {
   const view = {
     component: null,
     genOptions: new Set(['lower', 'upper', 'digits']),
-    genLength: 12,
-    genLengthMin: 12,
+    genLength: 10,
+    genLengthMin: 10,
     pwd_id: -1,
     id,
     views,
@@ -37,6 +37,18 @@ const createForm = (views, id, title) => {
     clear: function () {
       this.component.find('input').val('');
       return this;
+    },
+
+    //--------------------------------------------------------------------------
+    // Activate or deactivate the decrease button
+
+    setDecreaseState: function () {
+      const $decrease = this.component.find('.decrease');
+      if (this.genLength === this.genLengthMin) {
+        $decrease.attr('disabled', 'disabled').addClass('inactive');
+      } else {
+        $decrease.removeAttr('disabled').removeClass('inactive');
+      }
     },
 
     //--------------------------------------------------------------------------
@@ -139,6 +151,9 @@ const createForm = (views, id, title) => {
           $actionButtons
         );
 
+        // Set decrease button state
+        this.setDecreaseState();
+
         // Set toggle buttons state
         [...this.genOptions].forEach((option) => {
           $form.find(`.${option}`).addClass('on');
@@ -177,6 +192,7 @@ const createForm = (views, id, title) => {
     changeGenLength: function (n) {
       this.genLength = Math.max(this.genLength + n, this.genLengthMin);
       this.component.find('.length .value').text(this.genLength);
+      this.setDecreaseState();
     },
 
     //--------------------------------------------------------------------------
