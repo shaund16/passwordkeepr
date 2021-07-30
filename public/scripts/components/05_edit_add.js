@@ -84,7 +84,7 @@ const createForm = (views, id, title) => {
           'category_id',
           categories,
           'cat_id',
-          'category'
+          'cat_name'
         );
 
         // Dynamic field: Organizations

@@ -19,8 +19,8 @@
     display: grid;
     grid-template-columns: 75px 150px 75px;
     grid-template-rows: 37.5px 37.5px 35px;
-    align-items: stretch;
     justify-items: stretch;
+    align-items: stretch;
 
     .logo {
       grid-column: 1;

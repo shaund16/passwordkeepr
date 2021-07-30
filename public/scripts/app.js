@@ -4,11 +4,8 @@
 
 //------------------------------------------------------------------------------
 // Todo:
-// - Responsive cards
 // - Responsive layout
-// - Menu icons
-// - Login
-// - Register
+// - Login / Register
 // - Navbar login
 // - Validate forms
 

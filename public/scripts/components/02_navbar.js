@@ -41,6 +41,7 @@ const createNavbar = (views, id) => {
         const query = '?type=search&' + $('.search').serialize();
         this.views.setView('browse');
         this.views.browse.query = query;
+        this.views.menu.setActive('search');
         this.views.browse.update();
         $input.val('').blur();
       });

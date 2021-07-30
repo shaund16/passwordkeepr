@@ -102,7 +102,6 @@ const createBrowsePasswords = (views, id) => {
           url: `/api/passwords/${password.id}`,
         }).then(() => {
           this.views.menu.update();
-          this.views.browse.update();
         });
       });
 

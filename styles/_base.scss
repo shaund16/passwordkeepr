@@ -12,6 +12,10 @@ $col-xlight: #e0e0e0;
 $col-white: #ffffff;
 $col-highlight: #ffd523;
 
+@mixin bg-shade($lightn) {
+  background-color: scale-color($col-light, $lightness: $lightn);
+}
+
 //------------------------------------------------------------------------------
 // Fonts
 
